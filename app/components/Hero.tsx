@@ -1,9 +1,21 @@
-// components/Hero.tsx - Complete version with video
+// components/Hero.tsx - Updated with scroll to services functionality
+'use client';
 import Link from 'next/link';
 
 const Hero = () => {
+  // Function to handle smooth scroll to services section
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById('services-section');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-gray-900 via-blue-900/20 to-black overflow-hidden">
+    <section id="hero-section" className="relative min-h-screen bg-gradient-to-br from-gray-900 via-blue-900/20 to-black overflow-hidden">
       {/* Background Pattern/Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:6rem_4rem] opacity-20"></div>
       
@@ -13,7 +25,7 @@ const Hero = () => {
           
           {/* Left Content */}
           <div className="space-y-8">
-            {/* Main Heading - Updated for ExergicLabs */}
+            {/* Main Heading */}
             <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
               Empowering
               <br />
@@ -46,15 +58,18 @@ const Hero = () => {
               custom model fine-tuning and seamless API deployments.
             </p>
 
-            {/* CTA Button */}
+            {/* CTA Button - Updated with scroll functionality */}
             <div className="flex items-center gap-6">
-              <button className="bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-semibold px-8 py-4 rounded-full hover:from-cyan-300 hover:to-blue-400 transition-all duration-300 transform hover:scale-105">
+              <button 
+                onClick={scrollToServices}
+                className="bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-semibold px-8 py-4 rounded-full hover:from-cyan-300 hover:to-blue-400 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              >
                 Explore Our Services
               </button>
               
               {/* Trust Indicator */}
               <div className="text-white">
-                <div className="text-4xl font-bold">50+</div>
+                <div className="text-4xl font-bold">5+</div>
                 <div className="text-gray-400 text-sm">AI Solutions Delivered</div>
               </div>
             </div>
