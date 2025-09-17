@@ -3,6 +3,7 @@ import Navigation from '@/app/components/Navigation';
 import Hero from '@/app/components/Hero';
 import ServicesSection from '@/app/components/ServicesSection';
 import AboutSection from '@/app/components/AboutSection'
+import PortfolioSection from '@/app/components/PortfolioSection';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Navigation />
       <Hero />
       <ServicesSection />
+      <PortfolioSection />
       <AboutSection />
     </main>
   );
