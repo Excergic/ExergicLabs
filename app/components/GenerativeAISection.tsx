@@ -35,7 +35,7 @@ const GenerativeAISection = () => {
               This system enables educational platforms to provide precise and contextual answers by dynamically retrieving and generating content, greatly improving learner engagement and knowledge retention.
             </p>
             <a 
-              href="https://github.com/your-username/newton-llm" 
+              href="https://github.com/Excergic/Newton-LLM" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 rounded-lg font-semibold hover:from-pink-400 hover:to-purple-500 transition-colors"
@@ -55,7 +55,7 @@ const GenerativeAISection = () => {
               Acting as a virtual family doctor, Doctor-AI provides diagnostic suggestions along with warnings to seek second opinions. Additionally, it can analyse medical images including medicines and ECGs, assisting healthcare professionals with critical decision-making.
             </p>
             <a 
-              href="https://github.com/your-username/doctor-ai" 
+              href="https://github.com/Excergic/Acupuncture-RAG-App.git" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block bg-gradient-to-r from-green-500 to-teal-600 px-6 py-3 rounded-lg font-semibold hover:from-green-400 hover:to-teal-500 transition-colors"
@@ -74,7 +74,7 @@ const GenerativeAISection = () => {
               It uses SQLite for short-term memory storage and Qdrant for long-term memory. Text models like Groq LLaMA 3.3 90B power its language understanding. Speech-to-text and text-to-speech are handled by Eleven Labs, while image generation uses Nano Banana models. Vision analysis is powered by Groq LLaMA-Vision models.
             </p>
             <a 
-              href="https://github.com/your-username/alexa-whatsapp-agent" 
+              href="https://github.com/Excergic/alexa-whatsapp-agent.git" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block bg-gradient-to-r from-blue-500 to-cyan-600 px-6 py-3 rounded-lg font-semibold hover:from-blue-400 hover:to-cyan-500 transition-colors"

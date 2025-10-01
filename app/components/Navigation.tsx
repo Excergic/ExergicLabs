@@ -144,59 +144,11 @@ const Navigation = () => {
 
             {/* About Us */}
             <div 
-              className="relative"
-              onMouseEnter={() => openDropdown('about')}
-              onMouseLeave={closeDropdown}
             >
               <button className="text-gray-300 hover:text-white flex items-center gap-1 py-2 transition-colors duration-200">
                 About Us
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
               </button>
-
-              {activeDropdown === 'about' && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-gradient-to-r from-black to-gray-900 border border-gray-700 rounded-lg shadow-xl py-2">
-                  <a 
-                    href="#about-section"
-                    onClick={(e) => { e.preventDefault(); smoothScroll('about-section'); closeDropdown(); }}
-                    className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 transition-colors"
-                  >
-                    Our Story
-                  </a>
-                  <a 
-                    href="#our-mission"
-                    onClick={(e) => { e.preventDefault(); smoothScroll('our-mission'); closeDropdown(); }}
-                    className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 transition-colors"
-                  >
-                    Our Mission
-                  </a>
-                  <a 
-                    href="#portfolio-section"
-                    onClick={(e) => { e.preventDefault(); smoothScroll('portfolio-section'); closeDropdown(); }}
-                    className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 transition-colors"
-                  >
-                    Our Work
-                  </a>
-                  <a 
-                    href="#testimonials-section"
-                    onClick={(e) => { e.preventDefault(); smoothScroll('testimonials-section'); closeDropdown(); }}
-                    className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 transition-colors"
-                  >
-                    Client Success
-                  </a>
-                </div>
-              )}
             </div>
-
-            {/* Our Work */}
-            <Link 
-              href="#portfolio-section"
-              onClick={(e) => { e.preventDefault(); smoothScroll('portfolio-section'); }}
-              className="text-gray-300 hover:text-white transition-colors duration-200 py-2"
-            >
-              Our Work
-            </Link>
 
           </div>
 
