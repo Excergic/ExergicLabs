@@ -52,4 +52,6 @@ const TestimonialsCompact = () => {
   );
 };
 
+
 export default TestimonialsCompact;
+
