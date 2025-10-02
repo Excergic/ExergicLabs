@@ -90,13 +90,13 @@ const ContactSection = () => {
             <span className="text-white">CONTACT US</span>
           </div>
           <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6">
-            Let's{' '}
+            Let&apos;s{' '}
             <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
               Connect
             </span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
-            Ready to transform your business with AI? Get in touch and let's discuss how we can help you stay ahead in the market.
+            Ready to transform your business with AI? Get in touch and let&apos;s discuss how we can help you stay ahead in the market.
           </p>
           <div className="w-32 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto"></div>
         </div>
@@ -110,7 +110,7 @@ const ContactSection = () => {
             <div>
               <h3 className="text-2xl font-bold text-white mb-6">Connect With Me</h3>
               <p className="text-gray-400 mb-8">
-                Choose your preferred way to reach out. I'm active on all these platforms and typically respond within 24 hours.
+                Choose your preferred way to reach out. I&apos;m active on all these platforms and typically respond within 24 hours.
               </p>
               
               <div className="grid grid-cols-2 gap-4">
@@ -253,7 +253,7 @@ const ContactSection = () => {
                 <div className="text-6xl mb-6">✅</div>
                 <h3 className="text-2xl font-bold text-white mb-4">Message Sent Successfully!</h3>
                 <p className="text-gray-400 mb-6">
-                  Thank you for reaching out! I'll review your message and get back to you within 24 hours with a personalized response.
+                  Thank you for reaching out! I will review your message and get back to you within 24 hours with a personalized response.
                 </p>
                 <div className="text-cyan-400 font-medium">
                   Check your email for a confirmation message.

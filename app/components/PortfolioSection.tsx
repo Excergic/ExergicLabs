@@ -121,9 +121,9 @@ const PortfolioSection = () => {
   const filteredProjects = selectedCategory === 'All' 
     ? projects 
     : projects.filter(project => project.category === selectedCategory);
-
-  const handleDemoClick = (project: any) => {
-    if (project.demoUrl === null || project.demoUrl === '' || project.demoUrl === undefined || !project.demoUrl) {
+  
+  const handleDemoClick = (project: {demoUrl?: string | null}) => {
+    if (!project.demoUrl) {
       setShowDemoPopup(true);
     } else {
       window.open(project.demoUrl, '_blank');

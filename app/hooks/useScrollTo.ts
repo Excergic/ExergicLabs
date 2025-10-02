@@ -19,6 +19,3 @@ export const useScrollTo = () => {
   return scrollTo;
 };
 
-// Usage in Hero component:
-const scrollTo = useScrollTo();
-const scrollToServices = () => scrollTo('services-section', 80); // 80px offset
