@@ -1,17 +1,8 @@
 // components/Hero.tsx - Simple hero with free trial badge only
 'use client';
 
+
 const Hero = () => {
-  // Function to handle smooth scroll to services section
-  const scrollToServices = () => {
-    const servicesSection = document.getElementById('services-section');
-    if (servicesSection) {
-      servicesSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  };
 
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact-section');
