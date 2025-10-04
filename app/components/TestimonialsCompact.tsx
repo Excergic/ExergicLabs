@@ -33,7 +33,6 @@ const testimonials = [
 ];
 
 const TestimonialsCompact = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section id="testimonials-section" className="py-20 bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white relative overflow-hidden">
@@ -57,7 +56,7 @@ const TestimonialsCompact = () => {
             </span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Real results from real clients. See how we've helped companies ship production-ready AI solutions.
+            Real results from real clients. See how we have helped companies ship production-ready AI solutions.
           </p>
         </div>
 
