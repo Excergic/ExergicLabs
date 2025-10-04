@@ -2,6 +2,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navigation = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -39,9 +40,14 @@ const Navigation = () => {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-to-r from-white to-gray-300 rounded-lg flex items-center justify-center">
-              <span className="text-black font-bold text-lg">E</span>
-            </div>
+              <Image 
+                src="/logo.png"
+                alt="Exergic labs logo"  
+                width={48}
+                height={48}
+                className='h-12 w-12 rounded-full object-cover'
+                priority
+              />
             <span className="text-white font-bold text-xl">ExergicLabs</span>
           </Link>
 
