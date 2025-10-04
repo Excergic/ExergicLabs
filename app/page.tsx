@@ -7,7 +7,8 @@ import CoreMLServiceSection from './components/CoreMLServiceSection';
 import GenerativeAISection from './components/GenerativeAISection';
 import ProductBuildingSection from './components/ProductBuildingSection';
 import AIEducationConsultingSection from './components/AIEducationConsultingSection';
-import TestimonialsCompact from './components/TestimonialsCompact';
+//import TestimonialsCompact from './components/TestimonialsCompact';
+import Footer from './components/Footer';
 
 export default function Home() {
   return (
@@ -19,8 +20,9 @@ export default function Home() {
       <ProductBuildingSection />
       <AIEducationConsultingSection />
       <AboutSection />
-      <TestimonialsCompact />
+      {/*<TestimonialsCompact /> */}
       <ContactSection />
+      <Footer />
     </main>
   );
 }
