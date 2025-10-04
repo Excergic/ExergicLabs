@@ -24,16 +24,44 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    // Convert form data to JSON object
+    const object = {
+      access_key: '2135afa1-e941-4cf1-a561-daba07ca2805', 
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.companyEmail, // Web3Forms uses 'email' field
+      subject: `New Contact from ${formData.firstName} ${formData.lastName}`,
+      message: formData.solution,
+    };
+    
+    const json = JSON.stringify(object);
+    
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', // Critical: Must be application/json
+          'Accept': 'application/json'
+        },
+        body: json
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({ firstName: '', lastName: '', companyEmail: '', solution: '' });
+        }, 3000);
+      } else {
+        console.error('Form submission failed:', result);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFormData({ firstName: '', lastName: '', companyEmail: '', solution: '' });
-      }, 3000);
-    }, 2000);
+    }
   };
 
   const socialLinks = [
@@ -58,17 +86,6 @@ const ContactSection = () => {
       url: 'https://www.linkedin.com/in/dhaivat-jambudia/',
       color: 'hover:text-blue-600',
       bgColor: 'hover:bg-blue-600/10'
-    },
-    {
-      name: 'Email',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      ),
-      url: 'excergiclabs@gmail.com',
-      color: 'hover:text-green-500',
-      bgColor: 'hover:bg-green-500/10'
     },
   ];
 
@@ -262,16 +279,6 @@ const ContactSection = () => {
             )}
 
           </div>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <p className="text-gray-400 mb-4">
-            Prefer a quick chat? Book a free 30-minute consultation call
-          </p>
-          <button className="bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold px-8 py-3 rounded-full hover:from-green-400 hover:to-emerald-500 transition-all duration-300 hover:scale-105">
-            📅 Schedule Free Call
-          </button>
         </div>
 
       </div>

@@ -73,7 +73,7 @@ const AboutSection = () => {
         {/* Impact metrics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
           <div className="text-center">
-            <div className="text-3xl font-bold text-cyan-400">50+</div>
+            <div className="text-3xl font-bold text-cyan-400">5+</div>
             <div className="text-gray-400 text-sm">Projects</div>
           </div>
           <div className="text-center">
@@ -85,17 +85,9 @@ const AboutSection = () => {
             <div className="text-gray-400 text-sm">Support</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-purple-400">8w</div>
+            <div className="text-3xl font-bold text-purple-400">3w</div>
             <div className="text-gray-400 text-sm">Typical MVP</div>
           </div>
-        </div>
-
-        {/* Team story */}
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-700/50 mb-12">
-          <h3 className="text-2xl font-semibold mb-3 text-cyan-400">Our Story</h3>
-          <p className="text-gray-300">
-            ExergicLabs grew from a simple belief: AI value is created in production, not in slides. We’ve helped teams in healthcare, finance, education, and automation integrate Core ML and GenAI into daily operations—backed by evaluations, governance, and a pragmatic roadmap that compounds results over time.
-          </p>
         </div>
 
         {/* CTA */}
@@ -104,7 +96,7 @@ const AboutSection = () => {
             onClick={scrollToContact}
             className="inline-block bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold px-8 py-3 rounded-full hover:from-cyan-400 hover:to-blue-500 transition-all"
           >
-            Meet the Team
+            Contact Us
           </button>
         </div>
       </div>
