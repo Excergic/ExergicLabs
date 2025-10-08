@@ -1,26 +1,11 @@
-// components/Navigation.tsx - Updated with smooth scrolling for all dropdown links including About Us
+// components/Navigation.tsx - Dark theme with cyan hover effects
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 const Navigation = () => {
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
-
-  // Close dropdown on outside click
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(event.target as Node)) {
-        setActiveDropdown(null);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const openDropdown = (dropdown: string) => setActiveDropdown(dropdown);
-  const closeDropdown = () => setActiveDropdown(null);
 
   // Smooth scroll handler
   const smoothScroll = (id: string) => {
@@ -32,141 +17,81 @@ const Navigation = () => {
 
   return (
     <nav 
-      className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-black via-gray-900 to-black backdrop-blur-lg border-b border-gray-800"
+      className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-lg border-b border-gray-800"
       ref={navRef}
     >
       <div className="container mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-              <Image 
-                src="/logo.png"
-                alt="Exergic labs logo"  
-                width={48}
-                height={48}
-                className='h-12 w-12 rounded-full object-cover'
-                priority
-              />
-            <span className="text-white font-bold text-xl">ExergicLabs</span>
+            <Image 
+              src="/logo.png"
+              alt="ExergicLabs logo"  
+              width={40}
+              height={40}
+              className='h-10 w-10 rounded-full object-cover'
+              priority
+            />
+            <span className="text-white font-bold text-2xl">ExergicLabs</span>
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
-
-            {/* What We Do */}
-            <div 
-              className="relative"
-              onMouseEnter={() => openDropdown('services')}
-              onMouseLeave={closeDropdown}
+          {/* Desktop Nav - Centered Links */}
+          <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
+            <a 
+              href="#home"
+              onClick={(e) => { e.preventDefault(); smoothScroll('home'); }}
+              className="text-grey-300 font-medium hover:text-[#2bfbef] transition-colors duration-200"
             >
-              <button className="text-gray-300 hover:text-white flex items-center gap-1 py-2 transition-colors duration-200">
-                What We Do
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-
-              {activeDropdown === 'services' && (
-                <div className="absolute top-full left-0 mt-1 w-56 bg-gradient-to-r from-black to-gray-900 border border-gray-700 rounded-lg shadow-xl py-2">
-                  <a 
-                    href="#core-ml-service"
-                    onClick={(e) => { e.preventDefault(); smoothScroll('core-ml-service'); closeDropdown(); }}
-                    className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 transition-colors"
-                  >
-                    Core ML Service
-                  </a>
-                  <a 
-                    href="#product-building"
-                    onClick={(e) => { e.preventDefault(); smoothScroll('product-building'); closeDropdown(); }}
-                    className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 transition-colors"
-                  >
-                    Product Building
-                  </a>
-                  <a 
-                    href="#genai"
-                    onClick={(e) => { e.preventDefault(); smoothScroll('genai'); closeDropdown(); }}
-                    className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 transition-colors"
-                  >
-                    GenAI
-                  </a>
-                  <a 
-                    href="#ai-training-coaching"
-                    onClick={(e) => { e.preventDefault(); smoothScroll('ai-training-coaching'); closeDropdown(); }}
-                    className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 transition-colors"
-                  >
-                    AI Training and Coaching
-                  </a>
-                </div>
-              )}
-            </div>
-
-            {/* Industries */}
-            <div 
-              className="relative"
-              onMouseEnter={() => openDropdown('industries')}
-              onMouseLeave={closeDropdown}
+              Home
+            </a>
+            
+            <a 
+              href="#pricing"
+              onClick={(e) => { e.preventDefault(); smoothScroll('pricing'); }}
+              className="text-gray-300 font-medium hover:text-[#2bfbef] transition-colors duration-200"
             >
-              <button className="text-gray-300 hover:text-white flex items-center gap-1 py-2 transition-colors duration-200">
-                Industries
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-
-              {activeDropdown === 'industries' && (
-                <div className="absolute top-full left-0 mt-1 w-56 bg-gradient-to-r from-black to-gray-900 border border-gray-700 rounded-lg shadow-xl py-2">
-                  <a 
-                    href="#finance"
-                    onClick={(e) => { e.preventDefault(); smoothScroll('finance'); closeDropdown(); }}
-                    className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 transition-colors"
-                  >
-                    Finance / FinTech
-                  </a>
-                  <a 
-                    href="#education"
-                    onClick={(e) => { e.preventDefault(); smoothScroll('education'); closeDropdown(); }}
-                    className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 transition-colors"
-                  >
-                    Education / EdTech
-                  </a>
-                  <a 
-                    href="#healthcare"
-                    onClick={(e) => { e.preventDefault(); smoothScroll('healthcare'); closeDropdown(); }}
-                    className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 transition-colors"
-                  >
-                    HealthCare
-                  </a>
-                  <a 
-                    href="#automation"
-                    onClick={(e) => { e.preventDefault(); smoothScroll('automation'); closeDropdown(); }}
-                    className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 transition-colors"
-                  >
-                    Automation
-                  </a>
-                </div>
-              )}
-            </div>
-
-            {/* About Us */}
-            <div 
+              Pricing
+            </a>
+            
+            <a 
+              href="#blog"
+              onClick={(e) => { e.preventDefault(); smoothScroll('blog'); }}
+              className="text-gray-300 font-medium hover:text-[#2bfbef] transition-colors duration-200"
             >
-              <button className="text-gray-300 hover:text-white flex items-center gap-1 py-2 transition-colors duration-200">
-                About Us
-              </button>
-            </div>
-
+              Process
+            </a>
+            
+            <a 
+              href="#showcase"
+              onClick={(e) => { e.preventDefault(); smoothScroll('showcase'); }}
+              className="text-gray-300 font-medium hover:text-[#2bfbef] transition-colors duration-200"
+            >
+              Showcase
+            </a>
           </div>
 
-          {/* Contact Us */}
+          {/* Book a Call Button */}
           <div className="hidden md:block">
             <a 
               href="#contact-section"
               onClick={(e) => { e.preventDefault(); smoothScroll('contact-section'); }}
-              className="bg-gradient-to-r from-white to-gray-300 text-black px-6 py-2 rounded-lg font-medium hover:from-gray-200 hover:to-white transition-all duration-300 hover:scale-105"
+              className="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-[#2bcdfb] transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-[#2bcdfb]/20 hover:scale-90"
             >
-              Contact Us
+              Book a call
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button className="text-gray-300 hover:text-[#2bfbef] transition-colors">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
           </div>
 
         </div>

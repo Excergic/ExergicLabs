@@ -1,107 +1,91 @@
-// components/AboutSection.tsx
+// components/WhyExergicLabs.tsx
 'use client';
 
-const AboutSection = () => {
-  const scrollToContact = () => {
-    const el = document.getElementById('contact-section');
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
+const WhyExergicLabs = () => {
   return (
-    <section id="about-section" className="py-20 bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white">
-      <div className="container mx-auto px-6 lg:px-8 max-w-6xl">
+    <section className="relative py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+      
+      {/* Background Dots Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle, #2bfbef 1px, transparent 1px)`,
+          backgroundSize: '40px 40px',
+        }}></div>
+      </div>
+
+      <div className="container mx-auto px-6 lg:px-8 relative z-10">
         
-        {/* Header */}
-        <div className="mb-10">
-          <h2 className="text-4xl font-bold">
-            About <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">ExergicLabs</span>
-          </h2>
-          <p className="text-lg text-gray-300 mt-4">
-            Building dependable AI products—end to end. From Core ML and GenAI to product engineering, education, and production readiness, we prioritize tangible business outcomes over demos.
+        {/* Section Tag */}
+        <div className="mb-8">
+          <span className="text-[#2bfbef] text-sm font-medium uppercase tracking-wider">
+            Why ExergicLabs?
+          </span>
+        </div>
+
+        {/* Main Heading - Reduced brightness and boldness */}
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-200 mb-6 max-w-5xl leading-tight">
+          Too many founders waste months just trying to get their MVP off the ground.
+        </h2>
+
+        {/* Highlighted Text - Softer colors */}
+        <div className="mb-16">
+          <p className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight max-w-5xl">
+            <span className="bg-gradient-to-r from-[#2bfbef]/80 to-cyan-400/80 text-gray-900 px-4 py-2 inline-block">
+              We move faster, build leaner, and deliver
+            </span>
+          </p>
+          <p className="text-3xl md:text-4xl lg:text-5xl font-medium text-gray-200 mt-4 max-w-5xl leading-tight">
+            a working product in under a month so you can start validating, not waiting.
           </p>
         </div>
 
-        {/* Mission • Values • Differentiators */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="p-6 rounded-2xl bg-gray-900 border border-gray-700/50">
-            <div className="text-3xl mb-3">🎯</div>
-            <h3 className="text-xl font-semibold mb-2">Mission</h3>
-            <p className="text-gray-300">
-              Turn AI from experiments into profit—secure, observable, and reliable in real workflows.
+        {/* Feature Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          {/* Card 1 - Speed to Market */}
+          <div className="group bg-gradient-to-br from-purple-900/20 to-purple-800/10 backdrop-blur-sm border border-purple-500/20 rounded-3xl p-8 hover:scale-105 transition-transform duration-300">
+            <div className="w-16 h-16 bg-gradient-to-br from-purple-400/80 to-purple-600/80 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-purple-500/30">
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-semibold text-gray-200 mb-4">Speed to Market</h3>
+            <p className="text-gray-500 leading-relaxed font-normal">
+              Launch your MVP in weeks, not months. Our streamlined build process prioritizes momentum without cutting corners.
             </p>
           </div>
-          <div className="p-6 rounded-2xl bg-gray-900 border border-gray-700/50">
-            <div className="text-3xl mb-3">🧭</div>
-            <h3 className="text-xl font-semibold mb-2">Principles</h3>
-            <ul className="text-gray-300 space-y-2">
-              <li>• Solve one valuable workflow first</li>
-              <li>• Measure quality, cost, and latency</li>
-              <li>• Ship, observe, iterate</li>
-            </ul>
+
+          {/* Card 2 - Project Management */}
+          <div className="group bg-gradient-to-br from-orange-900/20 to-orange-800/10 backdrop-blur-sm border border-orange-500/20 rounded-3xl p-8 hover:scale-105 transition-transform duration-300">
+            <div className="w-16 h-16 bg-gradient-to-br from-orange-400/80 to-orange-600/80 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-orange-500/30">
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-semibold text-gray-200 mb-4">Project Management</h3>
+            <p className="text-gray-500 leading-relaxed font-normal">
+              No chasing. No confusion. One team, one timeline, with updates, clarity, and momentum from start to ship.
+            </p>
           </div>
-          <div className="p-6 rounded-2xl bg-gray-900 border border-gray-700/50">
-            <div className="text-3xl mb-3">⚡</div>
-            <h3 className="text-xl font-semibold mb-2">Why Us</h3>
-            <ul className="text-gray-300 space-y-2">
-              <li>• Production-first architecture</li>
-              <li>• Clear KPIs & evaluation harnesses</li>
-              <li>• Secure, governed deployments</li>
-            </ul>
+
+          {/* Card 3 - Fixed Pricing */}
+          <div className="group bg-gradient-to-br from-cyan-900/20 to-cyan-800/10 backdrop-blur-sm border border-cyan-500/20 rounded-3xl p-8 hover:scale-105 transition-transform duration-300">
+            <div className="w-16 h-16 bg-gradient-to-br from-[#2bfbef]/80 to-cyan-600/80 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-[#2bfbef]/30">
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-semibold text-gray-200 mb-4">Fixed Pricing</h3>
+            <p className="text-gray-500 leading-relaxed font-normal">
+              No hourly surprises. Transparent pricing from day one, built for predictability and founder peace of mind.
+            </p>
           </div>
+
         </div>
 
-        {/* What we do snapshot */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-          <div className="p-6 rounded-2xl bg-gray-900 border border-gray-700/50">
-            <h4 className="font-semibold mb-1">Core ML</h4>
-            <p className="text-gray-300 text-sm">Time series, regression, classification, churn & risk models.</p>
-          </div>
-          <div className="p-6 rounded-2xl bg-gray-900 border border-gray-700/50">
-            <h4 className="font-semibold mb-1">GenAI</h4>
-            <p className="text-gray-300 text-sm">RAG, agents, multimodal (text, image, audio, video).</p>
-          </div>
-          <div className="p-6 rounded-2xl bg-gray-900 border border-gray-700/50">
-            <h4 className="font-semibold mb-1">Product Building</h4>
-            <p className="text-gray-300 text-sm">MVP to production: CI/CD, tracing, guardrails, cost control.</p>
-          </div>
-          <div className="p-6 rounded-2xl bg-gray-900 border border-gray-700/50">
-            <h4 className="font-semibold mb-1">Education & Consulting</h4>
-            <p className="text-gray-300 text-sm">Role-based training and production readiness audits.</p>
-          </div>
-        </div>
-
-        {/* Impact metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-cyan-400">5+</div>
-            <div className="text-gray-400 text-sm">Projects</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-green-400">100%</div>
-            <div className="text-gray-400 text-sm">Ship Rate (MVPs)</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-yellow-400">24/7</div>
-            <div className="text-gray-400 text-sm">Support</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-purple-400">3w</div>
-            <div className="text-gray-400 text-sm">Typical MVP</div>
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div className="text-center">
-          <button
-            onClick={scrollToContact}
-            className="inline-block bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold px-8 py-3 rounded-full hover:from-cyan-400 hover:to-blue-500 transition-all"
-          >
-            Contact Us
-          </button>
-        </div>
       </div>
     </section>
   );
 };
 
-export default AboutSection;
+export default WhyExergicLabs;

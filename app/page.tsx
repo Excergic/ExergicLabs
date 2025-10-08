@@ -15,11 +15,11 @@ export default function Home() {
     <main className="min-h-screen">
       <Navigation />
       <Hero />
+      <AboutSection />
       <CoreMLServiceSection />
       <GenerativeAISection />
       <ProductBuildingSection />
       <AIEducationConsultingSection />
-      <AboutSection />
       {/*<TestimonialsCompact /> */}
       <ContactSection />
       <Footer />
