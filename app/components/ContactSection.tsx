@@ -91,7 +91,7 @@ const ContactSection = () => {
 
   return (
     <section 
-      id="contact-section"
+      id="contact"
       className="py-20 bg-gradient-to-br from-black via-gray-900 to-gray-800 relative overflow-hidden"
     >
       {/* Background Effects */}

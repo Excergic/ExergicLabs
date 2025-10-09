@@ -1,20 +1,25 @@
-// components/Hero.tsx - Dark hero with light dots pattern
+// components/Hero.tsx - Hero with smooth scroll support
 'use client';
+import Image from 'next/image';
 
 const Hero = () => {
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact-section');
+    const contactSection = document.getElementById('contact');
     if (contactSection) {
-      contactSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+      const offset = 80; // Height of navbar
+      const elementPosition = contactSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
       });
     }
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pb-32">
       
       {/* Dark Background */}
       <div className="absolute inset-0 z-0 bg-black"></div>
@@ -55,11 +60,11 @@ const Hero = () => {
         
         {/* Subtitle */}
         <p className="text-lg md:text-xl lg:text-2xl text-gray-400 mb-12 max-w-4xl mx-auto font-medium">
-          For Technical and non-technical founders helping to realize their power of data through AI
+          For Technical and Non-Technical founders helping to realize their power of data through AI
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
           <button 
             onClick={scrollToContact}
             className="bg-gradient-to-r from-[#2bfbef] to-cyan-400 text-black font-semibold px-10 py-4 rounded-full text-lg hover:scale-105 transition-all duration-300 shadow-lg shadow-[#2bfbef]/30 hover:shadow-[#2bfbef]/60 flex items-center gap-2"
@@ -72,9 +77,9 @@ const Hero = () => {
         </div>
         
       </div>
+
     </section>
   );
 };
 
 export default Hero;
-

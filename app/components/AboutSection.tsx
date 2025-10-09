@@ -17,8 +17,8 @@ const WhyExergicLabs = () => {
         
         {/* Section Tag */}
         <div className="mb-8">
-          <span className="text-[#2bfbef] text-sm font-medium uppercase tracking-wider">
-            Why ExergicLabs?
+          <span className="text-[#2bfbef] text-lg font-medium tracking-wider">
+            Why Choose Exergic Labs?
           </span>
         </div>
 

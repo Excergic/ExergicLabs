@@ -1,38 +1,38 @@
-// components/Navigation.tsx - Dark theme with cyan hover effects
+// components/Navigation.tsx
 'use client';
-import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 const Navigation = () => {
-  const navRef = useRef<HTMLDivElement>(null);
 
   // Smooth scroll handler
-  const smoothScroll = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80; // Height of navbar
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
   return (
     <nav 
       className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-lg border-b border-gray-800"
-      ref={navRef}
     >
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <Image 
-              src="/logo.png"
-              alt="ExergicLabs logo"  
-              width={40}
-              height={40}
-              className='h-10 w-10 rounded-full object-cover'
-              priority
-            />
+            <div className="w-10 h-10 bg-gradient-to-br from-[#2bfbef] to-cyan-600 rounded-full flex items-center justify-center">
+              <span className="text-white font-bold text-xl">E</span>
+            </div>
             <span className="text-white font-bold text-2xl">ExergicLabs</span>
           </Link>
 
@@ -40,43 +40,36 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
             <a 
               href="#home"
-              onClick={(e) => { e.preventDefault(); smoothScroll('home'); }}
-              className="text-grey-300 font-medium hover:text-[#2bfbef] transition-colors duration-200"
+              onClick={(e) => smoothScroll(e, 'home')}
+              className="text-[#2bfbef] font-medium hover:text-[#2bfbef] transition-colors duration-200"
             >
               Home
             </a>
             
-            <a 
+            {/*<a 
               href="#pricing"
-              onClick={(e) => { e.preventDefault(); smoothScroll('pricing'); }}
+              onClick={(e) => smoothScroll(e, 'pricing')}
               className="text-gray-300 font-medium hover:text-[#2bfbef] transition-colors duration-200"
             >
               Pricing
-            </a>
-            
-            <a 
-              href="#blog"
-              onClick={(e) => { e.preventDefault(); smoothScroll('blog'); }}
-              className="text-gray-300 font-medium hover:text-[#2bfbef] transition-colors duration-200"
-            >
-              Process
-            </a>
+            </a>*/}
             
             <a 
               href="#showcase"
-              onClick={(e) => { e.preventDefault(); smoothScroll('showcase'); }}
+              onClick={(e) => smoothScroll(e, 'showcase')}
               className="text-gray-300 font-medium hover:text-[#2bfbef] transition-colors duration-200"
             >
-              Showcase
+              Projects
             </a>
+             
           </div>
 
           {/* Book a Call Button */}
           <div className="hidden md:block">
             <a 
-              href="#contact-section"
-              onClick={(e) => { e.preventDefault(); smoothScroll('contact-section'); }}
-              className="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-[#2bcdfb] transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-[#2bcdfb]/20 hover:scale-90"
+              href="#contact"
+              onClick={(e) => smoothScroll(e, 'contact')}
+              className="bg-gradient-to-r from-[#2bfbef] to-cyan-400 text-black px-6 py-3 rounded-lg font-medium hover:bg-[#24d9cf] transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-[#2bfbef]/50 hover:scale-105"
             >
               Book a call
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
