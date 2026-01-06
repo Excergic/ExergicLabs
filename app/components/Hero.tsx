@@ -52,15 +52,15 @@ const Hero = () => {
 
         {/* Main Heading */}
         <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-tight mb-8 drop-shadow-[0_0_40px_rgba(43,251,239,0.3)]">
-          Turn AI into Revenue-Ready{' '}
+          Turn your Data into{' '}
           <span className="bg-gradient-to-r from-[#2bfbef] to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_60px_rgba(43,251,239,0.5)]">
-            MVP in 25 days
+            Revenue
           </span>
         </h2>
         
         {/* Subtitle */}
         <p className="text-lg md:text-xl lg:text-2xl text-gray-400 mb-12 max-w-4xl mx-auto font-medium">
-          For Technical and Non-Technical founders helping to realize their power of data through AI
+        Building real-time data pipelines and AI systems that drive business decisions
         </p>
 
         {/* CTA Buttons */}
