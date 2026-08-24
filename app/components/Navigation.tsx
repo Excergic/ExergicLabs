@@ -22,8 +22,9 @@ const Navigation = () => {
   };
 
   return (
-    <nav 
-      className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-lg border-b border-gray-800"
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-white/[0.06]"
+      style={{ background: 'rgba(8,8,8,0.92)' }}
     >
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">

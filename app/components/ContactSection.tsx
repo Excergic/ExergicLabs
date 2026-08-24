@@ -92,10 +92,11 @@ const ContactSection = () => {
   return (
     <section 
       id="contact"
-      className="py-20 bg-gradient-to-br from-black via-gray-900 to-gray-800 relative overflow-hidden"
+      className="py-20 relative overflow-hidden"
+      style={{ background: 'linear-gradient(135deg, #080808 0%, #0e0e0e 50%, #111111 100%)' }}
     >
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:6rem_4rem] opacity-10"></div>
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(to right, #2bfbef 1px, transparent 1px), linear-gradient(to bottom, #2bfbef 1px, transparent 1px)', backgroundSize: '6rem 4rem' }}></div>
       
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
         
@@ -137,7 +138,7 @@ const ContactSection = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center gap-4 p-4 bg-gray-800/50 rounded-xl border border-gray-700/50 ${social.bgColor} ${social.color} transition-all duration-300 hover:scale-105 hover:border-gray-600`}
+                    className={`flex items-center gap-4 p-4 bg-white/[0.04] rounded-xl border border-white/[0.08] ${social.bgColor} ${social.color} transition-all duration-300 hover:scale-105 hover:border-white/20`}
                   >
                     <div className="flex-shrink-0">
                       {social.icon}
@@ -159,7 +160,7 @@ const ContactSection = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-8 rounded-2xl border border-gray-700/50">
+          <div className="bg-white/[0.04] p-8 rounded-2xl border border-white/[0.08]">
             
             {!isSubmitted ? (
               <>
@@ -182,7 +183,7 @@ const ContactSection = () => {
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                        className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-[#2bfbef] focus:ring-1 focus:ring-[#2bfbef] transition-colors outline-none"
                         placeholder="Enter your first name"
                       />
                     </div>
@@ -197,7 +198,7 @@ const ContactSection = () => {
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                        className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-[#2bfbef] focus:ring-1 focus:ring-[#2bfbef] transition-colors outline-none"
                         placeholder="Enter your last name"
                       />
                     </div>
@@ -214,7 +215,7 @@ const ContactSection = () => {
                       name="companyEmail"
                       value={formData.companyEmail}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-[#2bfbef] focus:ring-1 focus:ring-[#2bfbef] transition-colors outline-none"
                       placeholder="Enter your company email address"
                     />
                   </div>
@@ -231,7 +232,7 @@ const ContactSection = () => {
                       onChange={handleInputChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors resize-none"
+                      className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-[#2bfbef] focus:ring-1 focus:ring-[#2bfbef] transition-colors resize-none outline-none"
                       placeholder="Describe your project, challenges, or AI solution needs. For example: 'I need a RAG system for my healthcare data' or 'Looking to automate customer service with AI chatbots'"
                     />
                     <div className="text-gray-500 text-xs mt-1">

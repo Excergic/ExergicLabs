@@ -36,10 +36,14 @@ const Projects = () => {
   ];
 
   return (
-    <section className="relative bg-gradient-to-b from-black via-gray-900 to-black" id="showcase">
+    <section
+      className="relative"
+      id="showcase"
+      style={{ background: 'linear-gradient(180deg, #0c0c0c 0%, #111111 50%, #0c0c0c 100%)' }}
+    >
       
       {/* Background Dots Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-[0.04]">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle, #2bfbef 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
@@ -49,10 +53,10 @@ const Projects = () => {
       {/* Section Header */}
       <div className="container mx-auto px-6 lg:px-8 pt-20 pb-12 relative z-10">
         <div className="text-center">
-          <span className="bg-white/10 backdrop-blur-sm text-gray-300 text-sm font-medium px-6 py-3 rounded-full border border-gray-700/50 inline-block mb-8">
+          <span className="bg-white/[0.06] backdrop-blur-sm text-gray-300 text-sm font-medium px-6 py-3 rounded-full border border-white/10 inline-block mb-8">
             Our Projects
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-200 mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 leading-tight">
             Built with AI, Shipped Fast
           </h2>
           <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
@@ -86,7 +90,7 @@ const Projects = () => {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  <div className="relative bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm border border-gray-700/50 rounded-3xl overflow-hidden shadow-2xl p-8">
+                  <div className="relative bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-3xl overflow-hidden shadow-2xl p-8">
                     
                     {/* Product Preview - Replace with actual image */}
                     <div className="aspect-[4/3] bg-gradient-to-br from-gray-900 to-black rounded-2xl flex items-center justify-center relative overflow-hidden">
@@ -134,7 +138,7 @@ const Projects = () => {
                     <div className="w-20 h-20 bg-gradient-to-br from-[#2bfbef]/20 to-cyan-600/20 rounded-3xl flex items-center justify-center border border-[#2bfbef]/30 shadow-lg shadow-[#2bfbef]/20">
                       <span className="text-4xl">{project.icon}</span>
                     </div>
-                    <h3 className="text-4xl md:text-5xl font-semibold text-gray-200">
+                    <h3 className="text-4xl md:text-5xl font-semibold text-white">
                       {project.name}
                     </h3>
                   </div>
