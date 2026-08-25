@@ -17,17 +17,12 @@ beforeEach(() => mockScrollTo.mockClear());
 describe('Hero — rendering', () => {
   it('renders the main headline text', () => {
     render(<Hero />);
-    expect(screen.getByText(/Turn your Data into/i)).toBeInTheDocument();
-  });
-
-  it('renders the Revenue keyword', () => {
-    render(<Hero />);
-    expect(screen.getByText('Revenue')).toBeInTheDocument();
+    expect(screen.getByText(/Don't lose your money and Time/i)).toBeInTheDocument();
   });
 
   it('renders subtitle about AI native', () => {
     render(<Hero />);
-    expect(screen.getByText(/Helping businesses become AI native/i)).toBeInTheDocument();
+    expect(screen.getByText(/Become AI native in 45 days/i)).toBeInTheDocument();
   });
 
   it('renders the Get in touch CTA button', () => {
