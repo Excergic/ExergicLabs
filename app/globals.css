@@ -1,28 +1,49 @@
 @import "tailwindcss";
 
-:root {
-  --background: #080808;
-  --foreground: #ffffff;
-}
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #f7f0e2; color: #16150f; font-family: var(--font-lora), Georgia, serif; }
+section[id] { scroll-margin-top: 96px; }
+a { color: #9a4a26; text-decoration: none; }
+a:hover { color: #6f3319; }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
-  --font-mono: monospace;
+.navlink { position: relative; }
+.navlink::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -5px;
+  height: 1px;
+  background: #9a4a26;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .28s ease;
 }
+.navlink:hover::after { transform: scaleX(1); }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
-}
+.lift { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+.lift:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(45,38,26,.13); border-color: rgba(154,74,38,.45); }
 
-p, span, li, a {
-  line-height: 1.7;
-}
+.paincard { transition: transform .3s ease, box-shadow .3s ease; }
+.paincard:hover { transform: translateY(-5px); box-shadow: 0 26px 54px rgba(45,38,26,.2); }
 
-h1, h2, h3, h4 {
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+.cta { transition: transform .2s ease, filter .2s ease; }
+.cta:hover { transform: translateY(-1px); filter: brightness(1.04); }
+.cta:active { transform: translateY(0); filter: brightness(.96); }
+
+.input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid rgba(154,74,38,.35);
+  border-radius: 3px;
+  background: #f7f0e2;
+  font-family: var(--font-lora), Georgia, serif;
+  font-size: 15px;
+  color: #16150f;
+  box-sizing: border-box;
+  outline: none;
 }
+.input:focus { border-color: rgba(154,74,38,.7); }
+
+.deck .arrow { opacity: 0; transition: opacity .25s ease; }
+.deck:hover .arrow { opacity: 1; }
+.rail { scrollbar-width: none; }
+.rail::-webkit-scrollbar { display: none; }

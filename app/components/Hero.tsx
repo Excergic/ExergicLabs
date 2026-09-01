@@ -1,67 +1,125 @@
-// components/Hero.tsx - Hero with smooth scroll support
-'use client';
-
-const Hero = () => {
-
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      const offset = 80;
-      const elementPosition = contactSection.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    }
-  };
-
+export default function Hero() {
   return (
     <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pb-32"
+      id="top"
       style={{
-        background: 'radial-gradient(ellipse 90% 60% at 50% -10%, rgba(43,251,239,0.10) 0%, transparent 65%), linear-gradient(180deg, #080808 0%, #0c0c0c 100%)',
+        position: "relative",
+        minHeight: "90vh",
+        display: "flex",
+        alignItems: "center",
+        borderBottom: "1px solid rgba(154,74,38,.22)",
       }}
     >
-      {/* Subtle dot grid */}
-      <div className="absolute inset-0 opacity-[0.025]" style={{
-        backgroundImage: `radial-gradient(circle, #2bfbef 1px, transparent 1px)`,
-        backgroundSize: '50px 50px',
-      }}></div>
-
-      {/* Top-left glow */}
-      <div className="absolute top-0 left-0 w-[700px] h-[700px] opacity-20 pointer-events-none" style={{ background: 'radial-gradient(circle, #2bfbef 0%, transparent 65%)' }}></div>
-
-      {/* Top-right glow */}
-      <div className="absolute top-0 right-0 w-[700px] h-[700px] opacity-15 pointer-events-none" style={{ background: 'radial-gradient(circle, #22d3ee 0%, transparent 65%)' }}></div>
-
-      {/* Main Content */}
-      <div className="container mx-auto px-6 lg:px-8 text-center relative z-10">
-
-        <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-tight mb-8 drop-shadow-[0_0_40px_rgba(43,251,239,0.2)]">
-          Turn your Data into{' '}
-          <span className="bg-gradient-to-r from-[#2bfbef] to-cyan-400 bg-clip-text text-transparent">
-            Revenue
-          </span>
-        </h2>
-
-        <p className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto font-medium">
-          Helping businesses become AI native — and building the AI products that make it real.
+      {/* Background placeholder */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "rgba(154,74,38,.04)",
+        }}
+      />
+      {/* Gradient overlay */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          background:
+            "linear-gradient(180deg, rgba(247,240,226,.96) 0%, rgba(247,240,226,.9) 55%, rgba(247,240,226,.78) 100%)",
+        }}
+      />
+      {/* Content */}
+      <div
+        style={{
+          position: "relative",
+          maxWidth: 1000,
+          margin: "0 auto",
+          padding: "128px 40px 112px",
+          width: "100%",
+          textAlign: "center",
+        }}
+      >
+        <p
+          style={{
+            fontSize: 12.5,
+            letterSpacing: ".22em",
+            textTransform: "uppercase",
+            color: "#9a4a26",
+            margin: "0 0 28px",
+          }}
+        >
+          The 45-day AI-native transformation
         </p>
-
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
-          <button
-            onClick={scrollToContact}
-            className="bg-gradient-to-r from-[#2bfbef] to-cyan-400 text-black font-semibold px-10 py-4 rounded-full text-lg hover:scale-105 transition-all duration-300 shadow-lg shadow-[#2bfbef]/25 hover:shadow-[#2bfbef]/50 flex items-center gap-2"
+        <h1
+          style={{
+            fontFamily: "var(--font-cormorant), Garamond, serif",
+            fontWeight: 400,
+            fontSize: 80,
+            lineHeight: 1.03,
+            letterSpacing: "-.02em",
+            margin: "0 auto 26px",
+            maxWidth: "20ch",
+          }}
+        >
+          Using GPT is not the same as being AI-native.
+        </h1>
+        <p
+          style={{
+            fontSize: 20,
+            lineHeight: 1.6,
+            maxWidth: "60ch",
+            margin: "0 auto 40px",
+            color: "#322d22",
+          }}
+        >
+          We redesign your recurring responsibilities, not your tool list, into
+          one measured AI operating system in 45 days.
+        </p>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 18,
+            flexWrap: "wrap",
+          }}
+        >
+          <a
+            className="cta"
+            href="#contact"
+            style={{
+              background: "#cbd63f",
+              color: "#1d2006",
+              border: "1px solid #aab52c",
+              fontFamily: "var(--font-cormorant), Garamond, serif",
+              fontSize: 17,
+              fontWeight: 600,
+              letterSpacing: ".03em",
+              padding: "15px 30px",
+              borderRadius: 4,
+              textDecoration: "none",
+            }}
           >
-            Get in touch
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+            Book a Workflow X-Ray
+          </a>
+          <a
+            href="#protocol"
+            style={{
+              fontFamily: "var(--font-cormorant), Garamond, serif",
+              fontSize: 17,
+              fontWeight: 600,
+              letterSpacing: ".03em",
+              padding: "15px 26px",
+              border: "1px solid rgba(154,74,38,.55)",
+              borderRadius: 4,
+              color: "#9a4a26",
+              textDecoration: "none",
+            }}
+          >
+            See the 45-day protocol
+          </a>
         </div>
-
       </div>
     </section>
   );
-};
-
-export default Hero;
+}

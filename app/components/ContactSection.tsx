@@ -1,291 +1,249 @@
-// components/ContactSection.tsx - Updated with new form fields
-'use client';
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 
-const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    companyEmail: '',
-    solution: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+export default function ContactSection() {
+  const [sent, setSent] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Convert form data to JSON object
-    const object = {
-      access_key: '2135afa1-e941-4cf1-a561-daba07ca2805', 
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      email: formData.companyEmail, // Web3Forms uses 'email' field
-      subject: `New Contact from ${formData.firstName} ${formData.lastName}`,
-      message: formData.solution,
+    const els = e.currentTarget.elements;
+    const val = (n: string) => {
+      const el = els.namedItem(n) as HTMLInputElement | HTMLTextAreaElement | null;
+      return el?.value ?? "not given";
     };
-    
-    const json = JSON.stringify(object);
-    
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', // Critical: Must be application/json
-          'Accept': 'application/json'
-        },
-        body: json
-      });
-      
-      const result = await response.json();
-      
-      if (result.success) {
-        setIsSubmitted(true);
-        setTimeout(() => {
-          setIsSubmitted(false);
-          setFormData({ firstName: '', lastName: '', companyEmail: '', solution: '' });
-        }, 3000);
-      } else {
-        console.error('Form submission failed:', result);
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
+    const name = val("name");
+    const body = [
+      "Name: " + name,
+      "Work email: " + val("email"),
+      "Role and team size: " + val("role"),
+      "",
+      "Responsibility that eats the week:",
+      val("responsibility"),
+    ].join("\n");
+    const mailto =
+      "mailto:dhaivat@exergiclabs.com" +
+      "?subject=" +
+      encodeURIComponent("Workflow X-Ray request: " + name) +
+      "&body=" +
+      encodeURIComponent(body);
+    setSent(true);
+    window.open(
+      "https://calendly.com/dhaivat-jambudia/new-meeting",
+      "_blank",
+      "noopener"
+    );
+    window.location.href = mailto;
+  }
+
+  const inputStyle: React.CSSProperties = {
+    width: "100%",
+    padding: "10px 14px",
+    border: "1px solid rgba(154,74,38,.35)",
+    borderRadius: 3,
+    background: "#f7f0e2",
+    fontFamily: "var(--font-lora), Georgia, serif",
+    fontSize: 15,
+    color: "#16150f",
+    boxSizing: "border-box",
+    outline: "none",
   };
 
-  const socialLinks = [
-    {
-      name: 'Twitter/X',
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
-      ),
-      url: 'https://x.com/dhaivat00',
-      color: 'hover:text-blue-400',
-      bgColor: 'hover:bg-blue-400/10'
-    },
-    {
-      name: 'LinkedIn',
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-        </svg>
-      ),
-      url: 'https://www.linkedin.com/in/dhaivat-jambudia/',
-      color: 'hover:text-blue-600',
-      bgColor: 'hover:bg-blue-600/10'
-    },
-  ];
+  const labelStyle: React.CSSProperties = {
+    fontSize: 12.5,
+    letterSpacing: ".12em",
+    textTransform: "uppercase",
+    color: "#6a6353",
+  };
 
   return (
-    <section 
-      id="contact"
-      className="py-20 relative overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #080808 0%, #0e0e0e 50%, #111111 100%)' }}
-    >
-      {/* Background Effects */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(to right, #2bfbef 1px, transparent 1px), linear-gradient(to bottom, #2bfbef 1px, transparent 1px)', backgroundSize: '6rem 4rem' }}></div>
-      
-      <div className="container mx-auto px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-2 text-cyan-400 text-sm font-medium mb-4">
-            <span>HOME</span>
-            <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
-            <span className="text-white">CONTACT US</span>
-          </div>
-          <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6">
-            Let&apos;s{' '}
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Connect
-            </span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
-            Ready to transform your business with AI? Get in touch and let&apos;s discuss how we can help you stay ahead in the market.
-          </p>
-          <div className="w-32 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto"></div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          
-          {/* Contact Methods */}
-          <div className="space-y-8">
-            
-            {/* Social Media Links */}
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Connect With Me</h3>
-              <p className="text-gray-400 mb-8">
-                Choose your preferred way to reach out. I&apos;m active on all these platforms and typically respond within 24 hours.
-              </p>
-              
-              <div className="grid grid-cols-2 gap-4">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center gap-4 p-4 bg-white/[0.04] rounded-xl border border-white/[0.08] ${social.bgColor} ${social.color} transition-all duration-300 hover:scale-105 hover:border-white/20`}
-                  >
-                    <div className="flex-shrink-0">
-                      {social.icon}
-                    </div>
-                    <div>
-                      <div className="text-white font-semibold">{social.name}</div>
-                      <div className="text-gray-400 text-sm">
-                        {social.name === 'Email' ? 'contact@exergiclabs.com' : 
-                         social.name === 'Discord' ? 'Join our server' :
-                         social.name === 'LinkedIn' ? 'Professional network' :
-                         'Follow for updates'}
-                      </div>
-                    </div>
-                  </a>
-                ))}
+    <section id="contact" style={{ background: "#f7f0e2" }}>
+      <div
+        style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          padding: "100px 40px",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 72,
+            alignItems: "start",
+          }}
+        >
+          {/* Left column */}
+          <div style={{ minWidth: 0 }}>
+            <p style={{ fontSize: 12.5, letterSpacing: ".2em", textTransform: "uppercase", color: "#9a4a26", margin: "0 0 16px" }}>
+              Contact
+            </p>
+            <h2
+              style={{
+                fontFamily: "var(--font-cormorant), Garamond, serif",
+                fontWeight: 400,
+                fontSize: 46,
+                lineHeight: 1.1,
+                margin: "0 0 24px",
+                maxWidth: "20ch",
+              }}
+            >
+              Bring one responsibility. We&apos;ll X-ray it.
+            </h2>
+            <p
+              style={{
+                fontSize: 16.5,
+                lineHeight: 1.75,
+                textAlign: "justify",
+                hyphens: "auto",
+                color: "#322d22",
+                margin: "0 0 30px",
+                maxWidth: "44ch",
+              }}
+            >
+              Name the recurring work that eats your week. On the call we
+              classify it as Keep, Augment, Delegate, Automate, Agentify or
+              Eliminate, and tell you what a redesign would change. If the
+              honest answer is a rule rather than an agent, we say so.
+            </p>
+            <div
+              style={{
+                borderTop: "1px solid rgba(154,74,38,.25)",
+                paddingTop: 24,
+                display: "grid",
+                gap: 14,
+                fontSize: 15.5,
+              }}
+            >
+              <div style={{ display: "flex", gap: 14 }}>
+                <span style={{ width: 90, fontSize: 12.5, letterSpacing: ".12em", textTransform: "uppercase", color: "#6a6353", paddingTop: 3, flex: "none" }}>
+                  Email
+                </span>
+                <a href="mailto:dhaivat@exergiclabs.com">dhaivat@exergiclabs.com</a>
+              </div>
+              <div style={{ display: "flex", gap: 14 }}>
+                <span style={{ width: 90, fontSize: 12.5, letterSpacing: ".12em", textTransform: "uppercase", color: "#6a6353", paddingTop: 3, flex: "none" }}>
+                  Programme
+                </span>
+                <span>45 days, one-to-one, embedded</span>
+              </div>
+              <div style={{ display: "flex", gap: 14 }}>
+                <span style={{ width: 90, fontSize: 12.5, letterSpacing: ".12em", textTransform: "uppercase", color: "#6a6353", paddingTop: 3, flex: "none" }}>
+                  Starts with
+                </span>
+                <span>A five-day Workflow X-Ray</span>
               </div>
             </div>
-
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-white/[0.04] p-8 rounded-2xl border border-white/[0.08]">
-            
-            {!isSubmitted ? (
-              <>
-                <h3 className="text-2xl font-bold text-white mb-6">Tell Us About Your Project</h3>
-                <p className="text-gray-400 mb-8">
-                  Fill out this form to get personalized AI solutions for your needs. The more details you provide, the better I can help you.
-                </p>
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  
-                  {/* First Name and Last Name - Side by side */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-white font-medium mb-2" htmlFor="firstName">
-                        First Name
-                      </label>
-                      <input
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-[#2bfbef] focus:ring-1 focus:ring-[#2bfbef] transition-colors outline-none"
-                        placeholder="Enter your first name"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-white font-medium mb-2" htmlFor="lastName">
-                        Last Name
-                      </label>
-                      <input
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-[#2bfbef] focus:ring-1 focus:ring-[#2bfbef] transition-colors outline-none"
-                        placeholder="Enter your last name"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Company Email Field */}
-                  <div>
-                    <label className="block text-white font-medium mb-2" htmlFor="companyEmail">
-                      Your Company Email
-                    </label>
-                    <input
-                      type="email"
-                      id="companyEmail"
-                      name="companyEmail"
-                      value={formData.companyEmail}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-[#2bfbef] focus:ring-1 focus:ring-[#2bfbef] transition-colors outline-none"
-                      placeholder="Enter your company email address"
-                    />
-                  </div>
-
-                  {/* Solution Field */}
-                  <div>
-                    <label className="block text-white font-medium mb-2" htmlFor="solution">
-                      Tell us what type of solution you are looking for *
-                    </label>
-                    <textarea
-                      id="solution"
-                      name="solution"
-                      value={formData.solution}
-                      onChange={handleInputChange}
-                      required
-                      rows={5}
-                      className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-[#2bfbef] focus:ring-1 focus:ring-[#2bfbef] transition-colors resize-none outline-none"
-                      placeholder="Describe your project, challenges, or AI solution needs. For example: 'I need a RAG system for my healthcare data' or 'Looking to automate customer service with AI chatbots'"
-                    />
-                    <div className="text-gray-500 text-xs mt-1">
-                      Be specific about your industry, use case, budget range, and timeline if possible.
-                    </div>
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold py-4 px-6 rounded-lg hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                  >
-                    {isSubmitting ? (
-                      <div className="flex items-center justify-center gap-3">
-                        <svg className="animate-spin w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                        </svg>
-                        Sending Message...
-                      </div>
-                    ) : (
-                      <div className="flex items-center justify-center gap-2">
-                        <span>Send Message</span>
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                        </svg>
-                      </div>
-                    )}
-                  </button>
-
-                </form>
-              </>
-            ) : (
-              /* Success Message */
-              <div className="text-center py-12">
-                <div className="text-6xl mb-6">✅</div>
-                <h3 className="text-2xl font-bold text-white mb-4">Message Sent Successfully!</h3>
-                <p className="text-gray-400 mb-6">
-                  Thank you for reaching out! I will review your message and get back to you within 24 hours with a personalized response.
-                </p>
-                <div className="text-cyan-400 font-medium">
-                  Check your email for a confirmation message.
-                </div>
-              </div>
-            )}
-
-          </div>
+          {/* Right column — form */}
+          <form
+            onSubmit={handleSubmit}
+            style={{
+              minWidth: 0,
+              border: "1px solid rgba(154,74,38,.3)",
+              borderRadius: 4,
+              background: "#fdf9ef",
+              padding: "34px 34px 36px",
+              display: "grid",
+              gap: 18,
+              boxShadow: "0 12px 30px rgba(45,38,26,.1)",
+            }}
+          >
+            <div style={{ display: "grid", gap: 7 }}>
+              <label htmlFor="contact-name" style={labelStyle}>Name</label>
+              <input
+                id="contact-name"
+                className="input"
+                name="name"
+                type="text"
+                placeholder="Your name"
+                required
+                style={inputStyle}
+              />
+            </div>
+            <div style={{ display: "grid", gap: 7 }}>
+              <label htmlFor="contact-email" style={labelStyle}>Work email</label>
+              <input
+                id="contact-email"
+                className="input"
+                name="email"
+                type="email"
+                placeholder="you@company.com"
+                required
+                style={inputStyle}
+              />
+            </div>
+            <div style={{ display: "grid", gap: 7 }}>
+              <label htmlFor="contact-role" style={labelStyle}>Role &amp; team size</label>
+              <input
+                id="contact-role"
+                className="input"
+                name="role"
+                type="text"
+                placeholder="e.g. Head of Operations, 40 staff"
+                style={inputStyle}
+              />
+            </div>
+            <div style={{ display: "grid", gap: 7 }}>
+              <label htmlFor="contact-responsibility" style={labelStyle}>
+                Which recurring responsibility eats your week?
+              </label>
+              <textarea
+                id="contact-responsibility"
+                className="input"
+                name="responsibility"
+                rows={4}
+                required
+                placeholder="Meeting follow-through, research to decision, management reporting…"
+                style={{ ...inputStyle, resize: "vertical" }}
+              />
+            </div>
+            <button
+              className="cta"
+              type="submit"
+              style={{
+                background: "#cbd63f",
+                color: "#1d2006",
+                border: "1px solid #aab52c",
+                fontFamily: "var(--font-cormorant), Garamond, serif",
+                fontSize: 16,
+                fontWeight: 600,
+                letterSpacing: ".03em",
+                padding: "14px 22px",
+                borderRadius: 4,
+                cursor: "pointer",
+                marginTop: 6,
+              }}
+            >
+              Book my Workflow X-Ray
+            </button>
+            <a
+              href="https://calendly.com/dhaivat-jambudia/new-meeting"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                textAlign: "center",
+                fontFamily: "var(--font-cormorant), Garamond, serif",
+                fontSize: 15,
+                fontWeight: 600,
+                letterSpacing: ".03em",
+                padding: "12px 20px",
+                border: "1px solid rgba(154,74,38,.55)",
+                borderRadius: 4,
+                color: "#9a4a26",
+                textDecoration: "none",
+              }}
+            >
+              Or pick a time on Calendly
+            </a>
+            <p style={{ fontSize: 12.5, lineHeight: 1.6, color: "#6a6353", margin: 0 }}>
+              {sent
+                ? "Your details are on their way to dhaivat@exergiclabs.com. Pick a time on Calendly and we will come prepared."
+                : "We reply within one working day. No sales sequence."}
+            </p>
+          </form>
         </div>
-
       </div>
     </section>
   );
-};
-
-export default ContactSection;
-
+}

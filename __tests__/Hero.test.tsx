@@ -1,71 +1,62 @@
 /**
  * Hero Tests
- * Covers: rendering, scroll behaviour, CTA button
+ * Covers: rendering, headline, CTAs, section id
  */
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Hero from '../app/components/Hero';
 
-// Mock smooth scroll
-const mockScrollTo = jest.fn();
-Object.defineProperty(window, 'scrollTo', { value: mockScrollTo, writable: true });
-Object.defineProperty(window, 'pageYOffset', { value: 0, writable: true });
-
-beforeEach(() => mockScrollTo.mockClear());
-
 describe('Hero — rendering', () => {
-  it('renders the main headline text', () => {
+  it('renders the main headline', () => {
     render(<Hero />);
-    expect(screen.getByText(/Turn your Data into/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Using GPT is not the same as being AI-native/i)
+    ).toBeInTheDocument();
   });
 
-  it('renders the Revenue keyword', () => {
+  it('renders the 45-day transformation label', () => {
     render(<Hero />);
-    expect(screen.getByText('Revenue')).toBeInTheDocument();
+    expect(
+      screen.getByText(/The 45-day AI-native transformation/i)
+    ).toBeInTheDocument();
   });
 
-  it('renders subtitle about AI native', () => {
+  it('renders the subtitle about AI operating system', () => {
     render(<Hero />);
-    expect(screen.getByText(/Helping businesses become AI native/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/AI operating system in 45 days/i)
+    ).toBeInTheDocument();
   });
 
-  it('renders the Get in touch CTA button', () => {
+  it('renders the Book a Workflow X-Ray CTA link', () => {
     render(<Hero />);
-    expect(screen.getByRole('button', { name: /get in touch/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: /Book a Workflow X-Ray/i })
+    ).toBeInTheDocument();
   });
 
-  it('has correct section id for anchor nav', () => {
+  it('renders the See the 45-day protocol link', () => {
+    render(<Hero />);
+    expect(
+      screen.getByRole('link', { name: /See the 45-day protocol/i })
+    ).toBeInTheDocument();
+  });
+
+  it('has correct section id="top" for anchor navigation', () => {
     const { container } = render(<Hero />);
-    expect(container.querySelector('#home')).toBeInTheDocument();
-  });
-});
-
-describe('Hero — scroll on CTA click', () => {
-  it('calls window.scrollTo when Get in touch is clicked and #contact exists', () => {
-    // Create a fake contact section in DOM
-    const contact = document.createElement('div');
-    contact.id = 'contact';
-    document.body.appendChild(contact);
-    jest.spyOn(contact, 'getBoundingClientRect').mockReturnValue({
-      top: 500, left: 0, right: 0, bottom: 0, width: 0, height: 0, x: 0, y: 0, toJSON: () => {},
-    });
-
-    render(<Hero />);
-    fireEvent.click(screen.getByRole('button', { name: /get in touch/i }));
-
-    expect(mockScrollTo).toHaveBeenCalledWith(
-      expect.objectContaining({ behavior: 'smooth' })
-    );
-
-    document.body.removeChild(contact);
+    expect(container.querySelector('#top')).toBeInTheDocument();
   });
 
-  it('does not throw when #contact element is missing', () => {
+  it('Book a Workflow X-Ray links to #contact', () => {
     render(<Hero />);
-    expect(() =>
-      fireEvent.click(screen.getByRole('button', { name: /get in touch/i }))
-    ).not.toThrow();
-    expect(mockScrollTo).not.toHaveBeenCalled();
+    const cta = screen.getByRole('link', { name: /Book a Workflow X-Ray/i });
+    expect(cta).toHaveAttribute('href', '#contact');
+  });
+
+  it('See the 45-day protocol links to #protocol', () => {
+    render(<Hero />);
+    const link = screen.getByRole('link', { name: /See the 45-day protocol/i });
+    expect(link).toHaveAttribute('href', '#protocol');
   });
 });
