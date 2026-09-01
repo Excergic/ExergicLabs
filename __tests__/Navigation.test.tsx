@@ -1,83 +1,66 @@
 /**
  * Navigation Tests
- * Covers: rendering, smooth scroll, active link styles
+ * Covers: rendering, links, CTA
  */
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Navigation from '../app/components/Navigation';
 
-const mockScrollTo = jest.fn();
-Object.defineProperty(window, 'scrollTo', { value: mockScrollTo, writable: true });
-Object.defineProperty(window, 'pageYOffset', { value: 0, writable: true });
-
-beforeEach(() => mockScrollTo.mockClear());
-
-function createSection(id: string, top = 400) {
-  const el = document.createElement('div');
-  el.id = id;
-  jest.spyOn(el, 'getBoundingClientRect').mockReturnValue({
-    top, left: 0, right: 0, bottom: 0, width: 0, height: 0, x: 0, y: 0, toJSON: () => {},
-  });
-  document.body.appendChild(el);
-  return el;
-}
-
 describe('Navigation — rendering', () => {
-  it('renders the brand name', () => {
+  it('renders the brand name ExergicLabs', () => {
     render(<Navigation />);
-    expect(screen.getByText('ExergicLabs')).toBeInTheDocument();
+    // Brand is split across two elements: "Exergic" + "Labs" — match by accessible link name
+    const link = screen.getByRole('link', { name: /exergic\s*labs/i });
+    expect(link).toBeInTheDocument();
   });
 
-  it('renders Home nav link', () => {
-    render(<Navigation />);
-    expect(screen.getByRole('link', { name: /home/i })).toBeInTheDocument();
-  });
-
-  it('renders Projects nav link', () => {
+  it('renders the Projects nav link', () => {
     render(<Navigation />);
     expect(screen.getByRole('link', { name: /projects/i })).toBeInTheDocument();
   });
 
-  it('renders Book a call button', () => {
+  it('renders the Case Studies nav link', () => {
     render(<Navigation />);
-    expect(screen.getByRole('link', { name: /book a call/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /case studies/i })).toBeInTheDocument();
   });
 
-  it('is fixed positioned (sticky nav)', () => {
+  it('renders the About nav link', () => {
+    render(<Navigation />);
+    expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument();
+  });
+
+  it('renders the Contact nav link', () => {
+    render(<Navigation />);
+    expect(screen.getByRole('link', { name: /^contact$/i })).toBeInTheDocument();
+  });
+
+  it('renders the Book an X-Ray CTA', () => {
+    render(<Navigation />);
+    expect(screen.getByRole('link', { name: /book an x-ray/i })).toBeInTheDocument();
+  });
+
+  it('has sticky positioning on the header', () => {
     const { container } = render(<Navigation />);
-    const nav = container.querySelector('nav');
-    expect(nav?.className).toMatch(/fixed/);
-  });
-});
-
-describe('Navigation — smooth scroll', () => {
-  it('scrolls to #home when Home is clicked', () => {
-    const el = createSection('home');
-    render(<Navigation />);
-    fireEvent.click(screen.getByRole('link', { name: /home/i }));
-    expect(mockScrollTo).toHaveBeenCalledWith(expect.objectContaining({ behavior: 'smooth' }));
-    document.body.removeChild(el);
+    const header = container.querySelector('header');
+    expect(header).toHaveStyle({ position: 'sticky' });
   });
 
-  it('scrolls to #showcase when Projects is clicked', () => {
-    const el = createSection('showcase');
+  it('Projects link points to /projects', () => {
     render(<Navigation />);
-    fireEvent.click(screen.getByRole('link', { name: /projects/i }));
-    expect(mockScrollTo).toHaveBeenCalledWith(expect.objectContaining({ behavior: 'smooth' }));
-    document.body.removeChild(el);
+    const link = screen.getByRole('link', { name: /^projects$/i });
+    expect(link).toHaveAttribute('href', '/projects');
   });
 
-  it('scrolls to #contact when Book a call is clicked', () => {
-    const el = createSection('contact');
+  it('Case Studies link points to /case-studies', () => {
     render(<Navigation />);
-    fireEvent.click(screen.getByRole('link', { name: /book a call/i }));
-    expect(mockScrollTo).toHaveBeenCalledWith(expect.objectContaining({ behavior: 'smooth' }));
-    document.body.removeChild(el);
+    const link = screen.getByRole('link', { name: /case studies/i });
+    expect(link).toHaveAttribute('href', '/case-studies');
   });
 
-  it('does not throw when target section does not exist', () => {
+  it('Book an X-Ray CTA links to contact section', () => {
     render(<Navigation />);
-    expect(() => fireEvent.click(screen.getByRole('link', { name: /home/i }))).not.toThrow();
+    const cta = screen.getByRole('link', { name: /book an x-ray/i });
+    expect(cta).toHaveAttribute('href', '/#contact');
   });
 });
