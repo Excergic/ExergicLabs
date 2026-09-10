@@ -10,28 +10,13 @@ export default function Home() {
       <Hero />
 
       {/* Pain section */}
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "100px 40px" }}>
-        <div style={{ textAlign: "center", margin: "0 auto 56px" }}>
-          <h2
-            style={{
-              fontFamily: "var(--font-cormorant), Garamond, serif",
-              fontWeight: 400,
-              fontSize: 48,
-              lineHeight: 1.08,
-              margin: "0 auto",
-              maxWidth: "18ch",
-            }}
-          >
+      <section className="wrap">
+        <div style={{ textAlign: "center", margin: "0 auto 40px" }}>
+          <h2 className="h2" style={{ margin: "0 auto", maxWidth: "18ch" }}>
             If any of this sounds familiar, you have access, not a system.
           </h2>
         </div>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 32,
-          }}
-        >
+        <div className="grid-3">
           {[
             {
               tag: "Enablement illusion",
@@ -49,18 +34,7 @@ export default function Home() {
               body: "People bring their own tools, and company data goes with them. No approved list, no owner, no policy. The risk is already live.",
             },
           ].map((card) => (
-            <div
-              key={card.tag}
-              className="paincard"
-              style={{
-                background: "#fdf9ef",
-                border: "1px solid rgba(154,74,38,.22)",
-                borderTop: "3px solid #cbd63f",
-                borderRadius: 4,
-                padding: "36px 32px 34px",
-                boxShadow: "0 16px 38px rgba(45,38,26,.14)",
-              }}
-            >
+            <div key={card.tag} className="paincard pain-card-pad">
               <div
                 style={{
                   fontFamily: "var(--font-cormorant), Garamond, serif",
@@ -72,25 +46,10 @@ export default function Home() {
               >
                 {card.tag}
               </div>
-              <h3
-                style={{
-                  fontFamily: "var(--font-cormorant), Garamond, serif",
-                  fontWeight: 500,
-                  fontSize: 28,
-                  lineHeight: 1.16,
-                  margin: "16px 0 14px",
-                }}
-              >
+              <h3 className="h3" style={{ margin: "16px 0 14px" }}>
                 {card.title}
               </h3>
-              <p
-                style={{
-                  fontSize: 15.5,
-                  lineHeight: 1.72,
-                  color: "#423b2d",
-                  margin: 0,
-                }}
-              >
+              <p className="body-copy" style={{ margin: 0 }}>
                 {card.body}
               </p>
             </div>
@@ -106,7 +65,7 @@ export default function Home() {
           borderBottom: "1px solid rgba(154,74,38,.22)",
         }}
       >
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "94px 40px" }}>
+        <div className="wrap">
           <p
             style={{
               fontSize: 12.5,
@@ -118,42 +77,15 @@ export default function Home() {
           >
             The unit of transformation
           </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-cormorant), Garamond, serif",
-              fontWeight: 400,
-              fontSize: 46,
-              lineHeight: 1.1,
-              margin: "0 0 20px",
-              maxWidth: "26ch",
-            }}
-          >
+          <h2 className="h2" style={{ margin: "0 0 20px", maxWidth: "26ch" }}>
             We start with a recurring responsibility, not a prompt or a tool.
           </h2>
-          <p
-            style={{
-              fontSize: 16.5,
-              lineHeight: 1.75,
-              maxWidth: "62ch",
-              color: "#322d22",
-              margin: "0 0 46px",
-            }}
-          >
+          <p className="lede" style={{ maxWidth: "62ch", margin: "0 0 46px" }}>
             Every responsibility and every step inside it is classified before
             anything is built. This is what stops you from buying an agent for a
             task that needed a rule, or automating work that should simply stop.
           </p>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: 1,
-              background: "rgba(154,74,38,.28)",
-              border: "1px solid rgba(154,74,38,.28)",
-              borderRadius: 4,
-              overflow: "hidden",
-            }}
-          >
+          <div className="grid-classify">
             {[
               { label: "Keep", desc: "When accountable judgment, empathy or ambiguity is the value." },
               { label: "Augment", desc: "When AI improves a human performer who stays in the seat." },
@@ -164,7 +96,7 @@ export default function Home() {
             ].map((item) => (
               <div
                 key={item.label}
-                style={{ background: "#f7f0e2", padding: "28px 28px 26px" }}
+                style={{ background: "#f7f0e2", padding: "24px 22px 22px" }}
               >
                 <div
                   style={{
@@ -174,14 +106,7 @@ export default function Home() {
                 >
                   {item.label}
                 </div>
-                <p
-                  style={{
-                    fontSize: 15,
-                    lineHeight: 1.7,
-                    color: "#423b2d",
-                    margin: "10px 0 0",
-                  }}
-                >
+                <p className="body-copy" style={{ margin: "10px 0 0" }}>
                   {item.desc}
                 </p>
               </div>
@@ -191,17 +116,8 @@ export default function Home() {
       </section>
 
       {/* Outcomes */}
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "100px 40px" }}>
-        <div
-          style={{
-            maxWidth: 860,
-            margin: "0 auto 72px",
-            textAlign: "center",
-            borderTop: "1px solid rgba(154,74,38,.25)",
-            borderBottom: "1px solid rgba(154,74,38,.25)",
-            padding: "44px 0",
-          }}
-        >
+      <section className="wrap">
+        <div className="quote-band">
           <p
             style={{
               fontSize: 12.5,
@@ -214,9 +130,9 @@ export default function Home() {
             What AI-native does not mean
           </p>
           <p
+            className="h2"
             style={{
-              fontFamily: "var(--font-cormorant), Garamond, serif",
-              fontSize: 32,
+              fontSize: "clamp(1.45rem, 3.4vw, 2rem)",
               lineHeight: 1.22,
               margin: "0 auto 18px",
               maxWidth: "26ch",
@@ -234,15 +150,7 @@ export default function Home() {
             </span>{" "}
             A system is deployed, and the people stay accountable for it.
           </p>
-          <p
-            style={{
-              fontSize: 16.5,
-              lineHeight: 1.72,
-              color: "#423b2d",
-              margin: "0 auto",
-              maxWidth: "62ch",
-            }}
-          >
+          <p className="lede" style={{ margin: "0 auto", maxWidth: "62ch", color: "#423b2d" }}>
             This is not a headcount exercise and not a promise of a percentage.
             Domain experience is the input the system runs on: your judgment,
             your relationships, your rules, your examples. What changes is where
@@ -250,7 +158,7 @@ export default function Home() {
             before-and-after numbers rather than an industry claim.
           </p>
         </div>
-        <div style={{ textAlign: "center", margin: "0 auto 50px" }}>
+        <div style={{ textAlign: "center", margin: "0 auto 40px" }}>
           <p
             style={{
               fontSize: 12.5,
@@ -262,26 +170,11 @@ export default function Home() {
           >
             What you are actually buying
           </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-cormorant), Garamond, serif",
-              fontWeight: 400,
-              fontSize: 46,
-              lineHeight: 1.1,
-              margin: "0 auto",
-              maxWidth: "19ch",
-            }}
-          >
+          <h2 className="h2" style={{ margin: "0 auto", maxWidth: "19ch" }}>
             Outcomes, and the controls that make them safe to keep.
           </h2>
         </div>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 30,
-          }}
-        >
+        <div className="grid-3">
           {[
             {
               num: "01 · Time returned",
@@ -299,16 +192,7 @@ export default function Home() {
               body: "Recovered hours are reinvested by decision: wider scope, faster decisions, deeper stakeholder work, new initiatives. Each transformed responsibility carries an evidence ledger: baseline, target, actual, next improvement.",
             },
           ].map((card) => (
-            <div
-              key={card.num}
-              className="lift"
-              style={{
-                border: "1px solid rgba(154,74,38,.3)",
-                borderRadius: 4,
-                padding: "32px 30px",
-                background: "#f7f0e2",
-              }}
-            >
+            <div key={card.num} className="lift outcome-card">
               <div
                 style={{
                   fontFamily: "var(--font-cormorant), Garamond, serif",
@@ -320,25 +204,10 @@ export default function Home() {
               >
                 {card.num}
               </div>
-              <h3
-                style={{
-                  fontFamily: "var(--font-cormorant), Garamond, serif",
-                  fontWeight: 500,
-                  fontSize: 29,
-                  lineHeight: 1.16,
-                  margin: "16px 0 12px",
-                }}
-              >
+              <h3 className="h3" style={{ margin: "16px 0 12px" }}>
                 {card.title}
               </h3>
-              <p
-                style={{
-                  fontSize: 15.5,
-                  lineHeight: 1.72,
-                  color: "#423b2d",
-                  margin: 0,
-                }}
-              >
+              <p className="body-copy" style={{ margin: 0 }}>
                 {card.body}
               </p>
             </div>
@@ -355,29 +224,18 @@ export default function Home() {
           borderBottom: "1px solid rgba(154,74,38,.22)",
         }}
       >
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "100px 40px" }}>
-          <h2
-            style={{
-              fontFamily: "var(--font-cormorant), Garamond, serif",
-              fontWeight: 400,
-              fontSize: 46,
-              lineHeight: 1.1,
-              margin: 0,
-              maxWidth: "24ch",
-            }}
-          >
+        <div className="wrap">
+          <h2 className="h2" style={{ margin: 0, maxWidth: "24ch" }}>
             The 45-day protocol, phase by phase.
           </h2>
           <div
             style={{
               height: 1,
               background: "rgba(154,74,38,.25)",
-              margin: "44px 0 0",
+              margin: "32px 0 0",
             }}
           />
-          <div
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}
-          >
+          <div className="protocol-grid">
             {[
               {
                 days: "D1–5",
@@ -438,18 +296,9 @@ export default function Home() {
             ].map((phase) => (
               <div
                 key={phase.days}
-                style={{
-                  minWidth: 0,
-                  padding: phase.right
-                    ? "36px 0 36px 44px"
-                    : "36px 44px 36px 0",
-                  borderBottom: "1px solid rgba(154,74,38,.25)",
-                  borderRight: phase.right
-                    ? undefined
-                    : "1px solid rgba(154,74,38,.25)",
-                }}
+                className={`protocol-cell ${phase.right ? "is-right" : "is-left"}`}
               >
-                <div style={{ display: "flex", gap: 20 }}>
+                <div className="protocol-row">
                   <span
                     style={{
                       fontFamily: "var(--font-cormorant), Garamond, serif",
@@ -462,25 +311,10 @@ export default function Home() {
                     {phase.days}
                   </span>
                   <div style={{ minWidth: 0 }}>
-                    <h3
-                      style={{
-                        fontFamily: "var(--font-cormorant), Garamond, serif",
-                        fontWeight: 500,
-                        fontSize: 30,
-                        lineHeight: 1.14,
-                        margin: "0 0 12px",
-                      }}
-                    >
+                    <h3 className="h3" style={{ margin: "0 0 12px" }}>
                       {phase.title}
                     </h3>
-                    <p
-                      style={{
-                        fontSize: 15.5,
-                        lineHeight: 1.72,
-                        color: "#423b2d",
-                        margin: "0 0 12px",
-                      }}
-                    >
+                    <p className="body-copy" style={{ margin: "0 0 12px" }}>
                       {phase.body}
                     </p>
                     <p
@@ -511,15 +345,8 @@ export default function Home() {
           borderBottom: "1px solid rgba(154,74,38,.22)",
         }}
       >
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "90px 40px" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: ".9fr 1.1fr",
-              gap: 72,
-              alignItems: "start",
-            }}
-          >
+        <div className="wrap">
+          <div className="grid-2-cases">
             <div style={{ minWidth: 0 }}>
               <p
                 style={{
@@ -532,25 +359,10 @@ export default function Home() {
               >
                 Case studies
               </p>
-              <h2
-                style={{
-                  fontFamily: "var(--font-cormorant), Garamond, serif",
-                  fontWeight: 400,
-                  fontSize: 44,
-                  lineHeight: 1.1,
-                  margin: "0 0 20px",
-                }}
-              >
+              <h2 className="h2" style={{ margin: "0 0 20px" }}>
                 Three responsibilities we redesign most often.
               </h2>
-              <p
-                style={{
-                  fontSize: 16.5,
-                  lineHeight: 1.72,
-                  color: "#423b2d",
-                  margin: "0 0 28px",
-                }}
-              >
+              <p className="lede" style={{ color: "#423b2d", margin: "0 0 28px" }}>
                 Each begins with a baseline and ends with a measured
                 before-and-after.
               </p>
@@ -585,7 +397,7 @@ export default function Home() {
                   href="/case-studies"
                   style={{
                     display: "flex",
-                    gap: 22,
+                    gap: 16,
                     alignItems: "baseline",
                     padding: "20px 0",
                     borderTop: "1px solid rgba(154,74,38,.25)",
@@ -602,7 +414,7 @@ export default function Home() {
                       letterSpacing: ".16em",
                       textTransform: "uppercase",
                       color: "#9a4a26",
-                      width: 92,
+                      width: 48,
                       flex: "none",
                     }}
                   >
@@ -611,7 +423,7 @@ export default function Home() {
                   <span
                     style={{
                       fontFamily: "var(--font-cormorant), Garamond, serif",
-                      fontSize: 26,
+                      fontSize: "clamp(1.2rem, 2.4vw, 1.625rem)",
                       lineHeight: 1.2,
                     }}
                   >
@@ -633,15 +445,8 @@ export default function Home() {
           borderBottom: "1px solid rgba(154,74,38,.22)",
         }}
       >
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "100px 40px" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1.15fr 1fr",
-              gap: 72,
-              alignItems: "start",
-            }}
-          >
+        <div className="wrap">
+          <div className="grid-2-about">
             <div style={{ minWidth: 0 }}>
               <p
                 style={{
@@ -654,68 +459,29 @@ export default function Home() {
               >
                 About
               </p>
-              <h2
-                style={{
-                  fontFamily: "var(--font-cormorant), Garamond, serif",
-                  fontWeight: 400,
-                  fontSize: 46,
-                  lineHeight: 1.1,
-                  margin: "0 0 28px",
-                  maxWidth: "24ch",
-                }}
-              >
+              <h2 className="h2" style={{ margin: "0 0 28px", maxWidth: "24ch" }}>
                 ExergicLabs builds the operating system, then hands you the
                 keys.
               </h2>
-              <p
-                style={{
-                  fontSize: 16.5,
-                  lineHeight: 1.75,
-                  color: "#322d22",
-                  margin: "0 0 16px",
-                }}
-              >
+              <p className="lede" style={{ margin: "0 0 16px" }}>
                 We work with mid-to-senior professionals and owner-led teams in
                 strategy, operations, marketing, sales, finance, HR and
                 programme management. People whose value is domain judgment, not
                 code. Most have AI access already and no change in what they can
                 own.
               </p>
-              <p
-                style={{
-                  fontSize: 16.5,
-                  lineHeight: 1.75,
-                  color: "#322d22",
-                  margin: "0 0 16px",
-                }}
-              >
+              <p className="lede" style={{ margin: "0 0 16px" }}>
                 Our method organises more than seventy agentic and automation
                 patterns into ten systems and applies only the ones a given
                 responsibility justifies.
               </p>
-              <p
-                style={{
-                  fontSize: 16.5,
-                  lineHeight: 1.75,
-                  color: "#322d22",
-                  margin: 0,
-                }}
-              >
+              <p className="lede" style={{ margin: 0 }}>
                 You stay the accountable owner throughout. We supply the
                 implementation and the coaching; you learn to direct the system,
                 judge its output, handle exceptions and find the next
                 opportunity.
               </p>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: 28,
-                  marginTop: 44,
-                  paddingTop: 30,
-                  borderTop: "1px solid rgba(154,74,38,.25)",
-                }}
-              >
+              <div className="grid-stats">
                 {[
                   {
                     title: "Embedded, one-to-one",
@@ -753,15 +519,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            {/* Portrait placeholder */}
-            <div
-              style={{
-                height: 520,
-                background: "rgba(154,74,38,.08)",
-                borderRadius: 4,
-                border: "1px solid rgba(154,74,38,.2)",
-              }}
-            />
+            <div className="portrait" />
           </div>
         </div>
       </section>

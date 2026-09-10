@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Lora } from "next/font/google";
 import "./globals.css";
 
@@ -22,6 +22,11 @@ export const metadata: Metadata = {
   title: "ExergicLabs — The 45-day AI-native transformation",
   description:
     "We redesign your recurring responsibilities into one measured AI operating system in 45 days.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

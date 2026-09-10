@@ -1,84 +1,60 @@
+"use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
+const links = [
+  { href: "/projects", label: "Projects" },
+  { href: "/case-studies", label: "Case Studies" },
+  { href: "/#about", label: "About" },
+  { href: "/#contact", label: "Contact" },
+];
+
 export default function Navigation() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  useEffect(() => {
+    function onResize() {
+      if (window.innerWidth >= 900) setOpen(false);
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    window.addEventListener("resize", onResize);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, []);
+
   return (
-    <header
-      style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
-        background: "rgba(247,240,226,.92)",
-        backdropFilter: "blur(10px)",
-        borderBottom: "1px solid rgba(154,74,38,.22)",
-      }}
-    >
-      <nav
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "16px 32px",
-          display: "flex",
-          alignItems: "center",
-          gap: 24,
-        }}
-      >
-        <Link
-          href="/"
-          style={{
-            fontFamily: "var(--font-cormorant), Garamond, serif",
-            fontSize: 21,
-            letterSpacing: ".14em",
-            textTransform: "uppercase",
-            color: "#16150f",
-            whiteSpace: "nowrap",
-            textDecoration: "none",
-          }}
-        >
+    <header className="site-header" style={{ position: "sticky" }}>
+      <nav className="nav-inner">
+        <Link href="/" className="nav-brand" onClick={() => setOpen(false)}>
           Exergic<span style={{ color: "#9a4a26" }}>Labs</span>
         </Link>
-        <div style={{ flex: 1 }} />
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 22,
-            fontSize: 13.5,
-            letterSpacing: ".05em",
-            textTransform: "uppercase",
-            whiteSpace: "nowrap",
-          }}
-        >
-          <Link
-            className="navlink"
-            href="/projects"
-            style={{ color: "#16150f", textDecoration: "none" }}
-          >
-            Projects
-          </Link>
-          <Link
-            className="navlink"
-            href="/case-studies"
-            style={{ color: "#16150f", textDecoration: "none" }}
-          >
-            Case Studies
-          </Link>
-          <Link
-            className="navlink"
-            href="/#about"
-            style={{ color: "#16150f", textDecoration: "none" }}
-          >
-            About
-          </Link>
-          <Link
-            className="navlink"
-            href="/#contact"
-            style={{ color: "#16150f", textDecoration: "none" }}
-          >
-            Contact
-          </Link>
+        <div className="nav-spacer" />
+        <div className="nav-links">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              className="navlink"
+              href={link.href}
+              style={{ color: "#16150f", textDecoration: "none" }}
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
         <Link
-          className="cta"
+          className="cta nav-cta-desktop"
           href="/#contact"
           style={{
             background: "#cbd63f",
@@ -97,7 +73,30 @@ export default function Navigation() {
         >
           Book an X-Ray
         </Link>
+        <button
+          type="button"
+          className={`nav-toggle${open ? " is-open" : ""}`}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </nav>
+      {open ? (
+        <div className="nav-drawer">
+          {links.map((link) => (
+            <Link key={link.href} href={link.href} onClick={() => setOpen(false)}>
+              {link.label}
+            </Link>
+          ))}
+          <Link className="cta" href="/#contact" onClick={() => setOpen(false)}>
+            Book an X-Ray
+          </Link>
+        </div>
+      ) : null}
     </header>
   );
 }
