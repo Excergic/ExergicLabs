@@ -8,20 +8,7 @@ export default function Footer() {
         background: "#efe4cf",
       }}
     >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "34px 40px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 24,
-          flexWrap: "wrap",
-          fontSize: 13,
-          color: "#6a6353",
-        }}
-      >
+      <div className="wrap-tight footer-inner">
         <span
           style={{
             fontFamily: "var(--font-cormorant), Garamond, serif",
@@ -34,7 +21,7 @@ export default function Footer() {
           ExergicLabs
         </span>
         <span>Helping businesses and teams become AI-native.</span>
-        <div style={{ display: "flex", gap: 22 }}>
+        <div className="footer-links">
           <Link href="/projects">Projects</Link>
           <Link href="/case-studies">Case Studies</Link>
           <Link href="/#about">About</Link>

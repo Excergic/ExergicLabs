@@ -42,7 +42,7 @@ export default function ContactSection() {
     borderRadius: 3,
     background: "#f7f0e2",
     fontFamily: "var(--font-lora), Georgia, serif",
-    fontSize: 15,
+    fontSize: 16,
     color: "#16150f",
     boxSizing: "border-box",
     outline: "none",
@@ -57,45 +57,20 @@ export default function ContactSection() {
 
   return (
     <section id="contact" style={{ background: "#f7f0e2" }}>
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "100px 40px",
-        }}
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 72,
-            alignItems: "start",
-          }}
-        >
+      <div className="wrap">
+        <div className="grid-2">
           {/* Left column */}
           <div style={{ minWidth: 0 }}>
             <p style={{ fontSize: 12.5, letterSpacing: ".2em", textTransform: "uppercase", color: "#9a4a26", margin: "0 0 16px" }}>
               Contact
             </p>
-            <h2
-              style={{
-                fontFamily: "var(--font-cormorant), Garamond, serif",
-                fontWeight: 400,
-                fontSize: 46,
-                lineHeight: 1.1,
-                margin: "0 0 24px",
-                maxWidth: "20ch",
-              }}
-            >
+            <h2 className="h2" style={{ margin: "0 0 24px", maxWidth: "20ch" }}>
               Bring one responsibility. We&apos;ll X-ray it.
             </h2>
             <p
+              className="lede"
               style={{
-                fontSize: 16.5,
-                lineHeight: 1.75,
-                textAlign: "justify",
-                hyphens: "auto",
-                color: "#322d22",
+                textAlign: "left",
                 margin: "0 0 30px",
                 maxWidth: "44ch",
               }}
@@ -114,20 +89,20 @@ export default function ContactSection() {
                 fontSize: 15.5,
               }}
             >
-              <div style={{ display: "flex", gap: 14 }}>
-                <span style={{ width: 90, fontSize: 12.5, letterSpacing: ".12em", textTransform: "uppercase", color: "#6a6353", paddingTop: 3, flex: "none" }}>
+              <div className="contact-meta">
+                <span className="contact-meta-label">
                   Email
                 </span>
-                <a href="mailto:dhaivat@exergiclabs.com">dhaivat@exergiclabs.com</a>
+                <a className="break-email" href="mailto:dhaivat@exergiclabs.com">dhaivat@exergiclabs.com</a>
               </div>
-              <div style={{ display: "flex", gap: 14 }}>
-                <span style={{ width: 90, fontSize: 12.5, letterSpacing: ".12em", textTransform: "uppercase", color: "#6a6353", paddingTop: 3, flex: "none" }}>
+              <div className="contact-meta">
+                <span className="contact-meta-label">
                   Programme
                 </span>
                 <span>45 days, one-to-one, embedded</span>
               </div>
-              <div style={{ display: "flex", gap: 14 }}>
-                <span style={{ width: 90, fontSize: 12.5, letterSpacing: ".12em", textTransform: "uppercase", color: "#6a6353", paddingTop: 3, flex: "none" }}>
+              <div className="contact-meta">
+                <span className="contact-meta-label">
                   Starts with
                 </span>
                 <span>A five-day Workflow X-Ray</span>
@@ -138,16 +113,7 @@ export default function ContactSection() {
           {/* Right column — form */}
           <form
             onSubmit={handleSubmit}
-            style={{
-              minWidth: 0,
-              border: "1px solid rgba(154,74,38,.3)",
-              borderRadius: 4,
-              background: "#fdf9ef",
-              padding: "34px 34px 36px",
-              display: "grid",
-              gap: 18,
-              boxShadow: "0 12px 30px rgba(45,38,26,.1)",
-            }}
+            className="contact-form"
           >
             <div style={{ display: "grid", gap: 7 }}>
               <label htmlFor="contact-name" style={labelStyle}>Name</label>

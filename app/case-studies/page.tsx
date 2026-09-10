@@ -86,11 +86,8 @@ export default function CaseStudiesPage() {
     <main>
       <Navigation />
 
-      <section
-        id="case-studies"
-        style={{ maxWidth: 1200, margin: "0 auto", padding: "100px 40px" }}
-      >
-        <div style={{ maxWidth: 760, margin: "0 0 54px" }}>
+      <section id="case-studies" className="wrap">
+        <div style={{ maxWidth: 760, margin: "0 0 40px" }}>
           <p
             style={{
               fontSize: 12.5,
@@ -102,25 +99,10 @@ export default function CaseStudiesPage() {
           >
             Case studies
           </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-cormorant), Garamond, serif",
-              fontWeight: 400,
-              fontSize: 52,
-              lineHeight: 1.08,
-              margin: "0 0 20px",
-            }}
-          >
+          <h2 className="h2-lg" style={{ margin: "0 0 20px" }}>
             Three responsibilities we redesign most often.
           </h2>
-          <p
-            style={{
-              fontSize: 16.5,
-              lineHeight: 1.72,
-              color: "#423b2d",
-              margin: 0,
-            }}
-          >
+          <p className="lede" style={{ color: "#423b2d", margin: 0 }}>
             Each one starts as a baseline and ends as a measured
             before-and-after. Slide through them, or hold the pointer over the
             deck to stop and read.
@@ -133,6 +115,8 @@ export default function CaseStudiesPage() {
           style={{ position: "relative" }}
           onMouseEnter={() => { pausedRef.current = true; }}
           onMouseLeave={() => { pausedRef.current = false; }}
+          onTouchStart={() => { pausedRef.current = true; }}
+          onTouchEnd={() => { pausedRef.current = false; }}
         >
           <div
             className="rail"
@@ -148,11 +132,8 @@ export default function CaseStudiesPage() {
             {cases.map((c) => (
               <article
                 key={c.id}
-                className="lift"
+                className="lift deck-card"
                 style={{
-                  flex: "0 0 calc(50% - 15px)",
-                  scrollSnapAlign: "start",
-                  minWidth: 0,
                   border: "1px solid rgba(154,74,38,.3)",
                   borderRadius: 4,
                   background: "#f7f0e2",
@@ -188,15 +169,7 @@ export default function CaseStudiesPage() {
                   >
                     {c.tag}
                   </p>
-                  <h3
-                    style={{
-                      fontFamily: "var(--font-cormorant), Garamond, serif",
-                      fontWeight: 500,
-                      fontSize: 27,
-                      lineHeight: 1.16,
-                      margin: "0 0 14px",
-                    }}
-                  >
+                  <h3 className="h3" style={{ margin: "0 0 14px" }}>
                     {c.title}
                   </h3>
                   <p
@@ -228,78 +201,26 @@ export default function CaseStudiesPage() {
           </div>
 
           <button
-            className="arrow"
+            className="arrow prev"
             type="button"
             aria-label="Previous case study"
             onClick={() => advance(-1)}
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: -18,
-              transform: "translateY(-50%)",
-              width: 46,
-              height: 46,
-              borderRadius: "50%",
-              border: "1px solid rgba(154,74,38,.4)",
-              background: "#fdf9ef",
-              color: "#9a4a26",
-              fontSize: 20,
-              cursor: "pointer",
-              boxShadow: "0 6px 18px rgba(45,38,26,.16)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
           >
             ‹
           </button>
           <button
-            className="arrow"
+            className="arrow next"
             type="button"
             aria-label="Next case study"
             onClick={() => advance(1)}
-            style={{
-              position: "absolute",
-              top: "50%",
-              right: -18,
-              transform: "translateY(-50%)",
-              width: 46,
-              height: 46,
-              borderRadius: "50%",
-              border: "1px solid rgba(154,74,38,.4)",
-              background: "#fdf9ef",
-              color: "#9a4a26",
-              fontSize: 20,
-              cursor: "pointer",
-              boxShadow: "0 6px 18px rgba(45,38,26,.16)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
           >
             ›
           </button>
         </div>
 
         {/* Risk-adjusted autonomy */}
-        <div
-          style={{
-            marginTop: 60,
-            border: "1px solid rgba(154,74,38,.3)",
-            borderRadius: 4,
-            padding: 40,
-            background: "#fdf9ef",
-            boxShadow: "0 12px 30px rgba(45,38,26,.1)",
-          }}
-        >
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1.15fr",
-              gap: 56,
-              alignItems: "start",
-            }}
-          >
+        <div className="risk-panel">
+          <div className="grid-2-risk">
             <div style={{ minWidth: 0 }}>
               <p
                 style={{
@@ -312,15 +233,7 @@ export default function CaseStudiesPage() {
               >
                 Risk-adjusted autonomy
               </p>
-              <h3
-                style={{
-                  fontFamily: "var(--font-cormorant), Garamond, serif",
-                  fontWeight: 400,
-                  fontSize: 34,
-                  lineHeight: 1.12,
-                  margin: "0 0 14px",
-                }}
-              >
+              <h3 className="h2" style={{ margin: "0 0 14px" }}>
                 Autonomy falls as consequence rises.
               </h3>
               <p
@@ -348,7 +261,7 @@ export default function CaseStudiesPage() {
                   key={t.tier}
                   style={{
                     display: "flex",
-                    gap: 18,
+                    gap: 14,
                     padding: "14px 0",
                     borderTop: "1px solid rgba(154,74,38,.25)",
                     borderBottom: i === 3 ? "1px solid rgba(154,74,38,.25)" : undefined,
@@ -359,7 +272,7 @@ export default function CaseStudiesPage() {
                       fontFamily: "var(--font-cormorant), Garamond, serif",
                       fontSize: 15,
                       color: "#9a4a26",
-                      width: 92,
+                      width: 72,
                       letterSpacing: ".1em",
                       textTransform: "uppercase",
                       flex: "none",

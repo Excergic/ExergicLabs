@@ -14,13 +14,7 @@ export default function ProjectsPage() {
           borderBottom: "1px solid rgba(154,74,38,.22)",
         }}
       >
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            padding: "110px 40px 120px",
-          }}
-        >
+        <div className="wrap">
           <p
             style={{
               fontSize: 12.5,
@@ -32,38 +26,15 @@ export default function ProjectsPage() {
           >
             Projects
           </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-cormorant), Garamond, serif",
-              fontWeight: 400,
-              fontSize: 52,
-              lineHeight: 1.08,
-              margin: "0 0 20px",
-              maxWidth: "22ch",
-            }}
-          >
+          <h2 className="h2-lg" style={{ margin: "0 0 20px", maxWidth: "22ch" }}>
             Selected work.
           </h2>
-          <p
-            style={{
-              fontSize: 16.5,
-              lineHeight: 1.72,
-              color: "#423b2d",
-              margin: "0 0 56px",
-              maxWidth: "56ch",
-            }}
-          >
+          <p className="lede" style={{ color: "#423b2d", margin: "0 0 40px", maxWidth: "56ch" }}>
             Write-ups of recent engagements are being prepared. In the
             meantime, the 45-day protocol on the home page sets out how each
             project runs.
           </p>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: 30,
-            }}
-          >
+          <div className="grid-3">
             {["Project 01", "Project 02", "Project 03"].map((label) => (
               <div
                 key={label}
@@ -106,22 +77,11 @@ export default function ProjectsPage() {
 
       {/* CTA strip */}
       <section style={{ background: "#efe4cf" }}>
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            padding: "74px 40px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 36,
-            flexWrap: "wrap",
-          }}
-        >
+        <div className="wrap cta-strip">
           <p
+            className="h2"
             style={{
-              fontFamily: "var(--font-cormorant), Garamond, serif",
-              fontSize: 34,
+              fontSize: "clamp(1.5rem, 3.6vw, 2.125rem)",
               lineHeight: 1.14,
               margin: 0,
               maxWidth: "26ch",
@@ -129,7 +89,7 @@ export default function ProjectsPage() {
           >
             Start with the five-day Workflow X-Ray.
           </p>
-          <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+          <div className="cta-row" style={{ justifyContent: "flex-start" }}>
             <a
               className="cta"
               href="https://calendly.com/dhaivat-jambudia/new-meeting"
