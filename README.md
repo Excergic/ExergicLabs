@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ExergicLabs portfolio
 
-## Getting Started
+A Next.js 15 / React 19 / TypeScript portfolio for an independent GTM engineer.
 
-First, run the development server:
+## Local review
 
-```bash
+```sh
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. For a production preview, run `npm run build` followed by `npm start`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```sh
+npm test -- --runInBand
+npm run build
+```
 
-## Learn More
+The homepage demonstrates the user-supplied FinBursa record through an interactive inspection. The hero CTA opens the evidence panel; the inspection also supports keyboard activation and resetting. Old `/projects` and `/case-studies` routes redirect to the featured build.
 
-To learn more about Next.js, take a look at the following resources:
+## Content and contacts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contact destinations live in `app/site-config.ts` and were retained from the existing repository. No social profiles were present. The 32-contact campaign result and example record were supplied by the site owner; warehouse status remains ready. No warehouse correction or performance lift is claimed.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The existing robot video and decorative tool graphics are unrelated to the documented build and are not used. All evidence visuals are HTML views labeled “Example record.” No additional projects are shown without supporting material.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Optional future assets: a real GTM walkthrough and workflow screenshots, verified social URLs, and proof or demos for additional builds. These are not required for the current interactive version.

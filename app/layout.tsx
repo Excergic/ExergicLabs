@@ -19,9 +19,9 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "ExergicLabs — The 45-day AI-native transformation",
+  title: "ExergicLabs — Data to Deal",
   description:
-    "We redesign your recurring responsibilities into one measured AI operating system in 45 days.",
+    "AI-assisted go-to-market systems inside the tools your team already uses. Explore a real prospect qualification decision and work with ExergicLabs.",
 };
 
 export const viewport: Viewport = {
