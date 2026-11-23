@@ -1,125 +1,53 @@
+"use client";
+
+import { useRef, useState } from "react";
+import EvidenceRecord from "./EvidenceRecord";
+
 export default function Hero() {
+  const [inspecting, setInspecting] = useState(false);
+  const inspectionRef = useRef<HTMLDivElement>(null);
+
+  function explore() {
+    setInspecting(true);
+    inspectionRef.current?.focus({ preventScroll: true });
+    inspectionRef.current?.scrollIntoView({ behavior: "instant", block: "nearest" });
+  }
+
   return (
-    <section
-      id="top"
-      style={{
-        position: "relative",
-        minHeight: "90vh",
-        display: "flex",
-        alignItems: "center",
-        borderBottom: "1px solid rgba(154,74,38,.22)",
-      }}
-    >
-      {/* Background placeholder */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: "rgba(154,74,38,.04)",
-        }}
-      />
-      {/* Gradient overlay */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          pointerEvents: "none",
-          background:
-            "linear-gradient(180deg, rgba(247,240,226,.96) 0%, rgba(247,240,226,.9) 55%, rgba(247,240,226,.78) 100%)",
-        }}
-      />
-      {/* Content */}
-      <div
-        style={{
-          position: "relative",
-          maxWidth: 1000,
-          margin: "0 auto",
-          padding: "128px 40px 112px",
-          width: "100%",
-          textAlign: "center",
-        }}
-      >
-        <p
-          style={{
-            fontSize: 12.5,
-            letterSpacing: ".22em",
-            textTransform: "uppercase",
-            color: "#9a4a26",
-            margin: "0 0 28px",
-          }}
-        >
-          The 45-day AI-native transformation
-        </p>
-        <h1
-          style={{
-            fontFamily: "var(--font-cormorant), Garamond, serif",
-            fontWeight: 400,
-            fontSize: 80,
-            lineHeight: 1.03,
-            letterSpacing: "-.02em",
-            margin: "0 auto 26px",
-            maxWidth: "20ch",
-          }}
-        >
-          Using GPT is not the same as being AI-native.
-        </h1>
-        <p
-          style={{
-            fontSize: 20,
-            lineHeight: 1.6,
-            maxWidth: "60ch",
-            margin: "0 auto 40px",
-            color: "#322d22",
-          }}
-        >
-          We redesign your recurring responsibilities, not your tool list, into
-          one measured AI operating system in 45 days.
-        </p>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 18,
-            flexWrap: "wrap",
-          }}
-        >
-          <a
-            className="cta"
-            href="#contact"
-            style={{
-              background: "#cbd63f",
-              color: "#1d2006",
-              border: "1px solid #aab52c",
-              fontFamily: "var(--font-cormorant), Garamond, serif",
-              fontSize: 17,
-              fontWeight: 600,
-              letterSpacing: ".03em",
-              padding: "15px 30px",
-              borderRadius: 4,
-              textDecoration: "none",
-            }}
-          >
-            Book a Workflow X-Ray
-          </a>
-          <a
-            href="#protocol"
-            style={{
-              fontFamily: "var(--font-cormorant), Garamond, serif",
-              fontSize: 17,
-              fontWeight: 600,
-              letterSpacing: ".03em",
-              padding: "15px 26px",
-              border: "1px solid rgba(154,74,38,.55)",
-              borderRadius: 4,
-              color: "#9a4a26",
-              textDecoration: "none",
-            }}
-          >
-            See the 45-day protocol
-          </a>
+    <section className="hero wrap" id="top" aria-labelledby="hero-heading">
+      <div className="hero-copy">
+        <p className="eyebrow">Independent GTM Engineer</p>
+        <h1 id="hero-heading">Data to <span className="accent-word">Deal</span></h1>
+        <p className="intro">Help B2B businesses make <span className="accent-word">intelligent GTM systems</span> with their data</p>
+        <div className="actions">
+          <button className="button" onClick={explore} aria-controls="workflow-inspection" aria-expanded={inspecting}>Explore the workflow</button>
+          <a className="text-link" href="#contact">Work with me</a>
         </div>
+        <p className="hero-note">AI-assisted systems. Inside the tools you already use.</p>
       </div>
+      <figure className="workflow-figure">
+        <div className="operator-tool">
+          <div className="tool-top"><span className="tool-symbol" aria-hidden="true">↳</span><span>Prospect qualification</span><span className="tool-label">Example record</span></div>
+          <div className="tool-body">
+            <div className="tool-heading"><span>Campaign review</span><span className="record-count">1 record selected</span></div>
+            <div className="account-row"><span className="selected-mark" aria-hidden="true">✓</span><span className="account-monogram" aria-hidden="true">F</span><div><strong>FinBursa</strong><span>Current employer</span></div><span className="role-tag">CRO</span></div>
+            <div id="workflow-inspection" className="inspection" ref={inspectionRef} tabIndex={-1}>
+              {inspecting ? (
+                <>
+                  <div className="inspection-heading"><span>Decision inspection</span><button className="reset-button" onClick={() => setInspecting(false)}>Reset view</button></div>
+                  <EvidenceRecord />
+                  <div className="inspection-outcome"><strong>Deliverable doesn’t mean campaign-qualified.</strong><p>The returned domain does not match the current employer. Hold this contact and fill the place with the next qualified match.</p></div>
+                  <p className="warehouse-note">Warehouse status: Ready — unchanged.</p>
+                </>
+              ) : (
+                <div className="inspection-prompt"><div className="inspection-icon" aria-hidden="true">≠</div><h2>Right account.<br />Right email?</h2><p>See why a deliverable email was held out of the campaign.</p><button className="inspect-button" onClick={() => setInspecting(true)} aria-controls="workflow-inspection" aria-expanded={false}>Inspect decision</button></div>
+              )}
+            </div>
+          </div>
+          <div className="tool-bottom"><span>Account → Evidence → Campaign decision</span><span>Human review</span></div>
+        </div>
+        <figcaption>Inside the prospect qualification workflow.</figcaption>
+      </figure>
     </section>
   );
 }

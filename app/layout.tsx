@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Lora } from "next/font/google";
 import "./globals.css";
 
@@ -19,9 +19,14 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "ExergicLabs — The 45-day AI-native transformation",
+  title: "ExergicLabs — Data to Deal",
   description:
-    "We redesign your recurring responsibilities into one measured AI operating system in 45 days.",
+    "AI-assisted go-to-market systems inside the tools your team already uses. Explore a real prospect qualification decision and work with ExergicLabs.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
